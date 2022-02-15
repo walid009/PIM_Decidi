@@ -2,6 +2,8 @@ import 'package:decidi/screens/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'fitness_app_home_screen.dart';
+
 class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -244,7 +246,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      print('Button pressed ...');
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) =>
+                              FitnessAppHomeScreen(),
+                        ),
+                      );
                     },
                     child: Container(
                         width: 150,
