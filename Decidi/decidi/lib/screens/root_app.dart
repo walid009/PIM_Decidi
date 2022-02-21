@@ -4,6 +4,7 @@ import 'package:decidi/screens/chat.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:decidi/widgets/bottombar_item.dart';
+import 'course/car_list.dart';
 import 'home.dart';
 
 class RootApp extends StatefulWidget {
@@ -29,7 +30,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/play.svg",
       "active_icon": "assets/icons/play.svg",
-      "page": Container(),
+      "page": CarList(),
     },
     {
       "icon": "assets/icons/chat.svg",
