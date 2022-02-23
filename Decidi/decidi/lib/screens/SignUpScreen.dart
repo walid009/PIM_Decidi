@@ -1,7 +1,8 @@
+// ignore_for_file: unused_field, body_might_complete_normally_nullable
+
 import 'dart:convert';
 import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/screens/first_run.dart';
-import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

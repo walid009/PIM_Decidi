@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'car_list.dart';
 import 'k_constant.dart';
 
+// ignore: must_be_immutable
 class CarView extends StatelessWidget {
   late String id;
   late String image;

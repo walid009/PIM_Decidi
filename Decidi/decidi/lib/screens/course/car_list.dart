@@ -2,7 +2,6 @@ import 'package:decidi/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../root_app.dart';
 import 'add_car.dart';
 import 'car_view.dart';
 import 'k_constant.dart';
