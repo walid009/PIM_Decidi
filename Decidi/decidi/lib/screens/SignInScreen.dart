@@ -148,6 +148,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             onSaved: (text) {
                               _email = text;
                             },
+                            // ignore: body_might_complete_normally_nullable
                             validator: (String? value) {
                               if (value!.isEmpty) {
                                 return "Please Put your Email";
