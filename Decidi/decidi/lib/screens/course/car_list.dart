@@ -1,3 +1,4 @@
+import 'package:decidi/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -40,6 +41,10 @@ class _CarListState extends State<CarList> {
     //print(cars.length);
   }
 
+  void reloadPage() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -48,54 +53,29 @@ class _CarListState extends State<CarList> {
         if (snapshot.hasData) {
           return Scaffold(
               appBar: AppBar(
-                title: const Text("List Course"),
-              ),
-              drawer: Drawer(
-                child: Column(
-                  children: [
-                    AppBar(
-                      title: const Text("Choose"),
-                      automaticallyImplyLeading: false,
-                    ),
-                    ListTile(
-                      title: Row(
-                        children: const [
-                          Icon(Icons.edit),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text("Add Course")
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => AddCar(),
-                          ),
-                        );
-                      },
-                    ),
-                    ListTile(
-                      title: Row(
-                        children: const [
-                          Icon(Icons.home),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text("Back Home")
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => RootApp(),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
+                title: const Text(
+                  "List Course",
+                  style: TextStyle(color: Colors.black),
                 ),
+                backgroundColor: Colors.white,
               ),
+              floatingActionButton: FloatingActionButton(
+                child: Icon(
+                  Icons.add,
+                ),
+                backgroundColor: primary,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => AddCar(
+                        reload: reloadPage,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
               body: ListView.builder(
                 itemCount: cars.length,
                 itemBuilder: (context, index) {

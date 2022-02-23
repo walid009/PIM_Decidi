@@ -6,7 +6,8 @@ import 'car_list.dart';
 import 'k_constant.dart';
 
 class AddCar extends StatefulWidget {
-  const AddCar({Key? key}) : super(key: key);
+  const AddCar({Key? key, required this.reload}) : super(key: key);
+  final Function reload;
 
   @override
   State<AddCar> createState() => _AddCarState();
@@ -18,11 +19,20 @@ class _AddCarState extends State<AddCar> {
   late int price;
   late String description;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add New Car"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: const Text(
+          "Add New Course",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
       ),
       body: Form(
         key: _formkey, //cle pour affichage controle sasie
@@ -175,7 +185,14 @@ class _AddCarState extends State<AddCar> {
                         child: const Text(
                           "Add",
                           style: TextStyle(fontSize: 20),
-                        )
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.blue),
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(10)),
+                            textStyle: MaterialStateProperty.all(
+                                const TextStyle(fontSize: 20)))
                         //const Text("Add", textScaleFactor: 1.5)
                         ),
                     const SizedBox(
@@ -194,25 +211,30 @@ class _AddCarState extends State<AddCar> {
                             textStyle: MaterialStateProperty.all(
                                 const TextStyle(fontSize: 20)))
                         //style: ElevatedButton.styleFrom(fixedSize: const Size(80, 80), primary: Colors.red)
+                        ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => CarList(),
+                            ),
+                          );
+                        },
+                        child: const Text("Back"),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.green),
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(10)),
+                            textStyle: MaterialStateProperty.all(
+                                const TextStyle(fontSize: 20)))
+                        //style: ElevatedButton.styleFrom(fixedSize: const Size(80, 80), primary: Colors.red)
                         )
                   ],
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => CarList(),
-                      ),
-                    );
-                  },
-                  child: Text("Go Back"),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.green),
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(10)),
-                      textStyle: MaterialStateProperty.all(
-                          const TextStyle(fontSize: 20))),
-                )
               ],
             )
           ],
