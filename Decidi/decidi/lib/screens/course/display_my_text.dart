@@ -1,3 +1,4 @@
+import 'package:decidi/screens/root_app.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/first_run_data.dart';
@@ -31,7 +32,17 @@ class _DisplayNotesState extends State<DisplayNotes> {
                 trailing: Text(element.toString()),
                 title: Text(ScienceMat[i]),
               );
-            })
+            }),
+            SizedBox(
+              height: 20,
+            ),
+            IconButton(
+                onPressed: () => Navigator.of(context).push<void>(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => RootApp(),
+                      ),
+                    ),
+                icon: Icon(Icons.navigate_next))
           ],
         ),
       ),
