@@ -1,6 +1,8 @@
+import 'package:decidi/providers/DataProvider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'car_list.dart';
 import 'k_constant.dart';
 
@@ -67,14 +69,10 @@ class CarView extends StatelessWidget {
                               style:
                                   ElevatedButton.styleFrom(primary: Colors.red),
                               onPressed: () async {
-                                await http.delete(
-                                    Uri.http(baseUrl, "/deletecourse/" + id));
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute<void>(
-                                    builder: (BuildContext context) =>
-                                        CarList(),
-                                  ),
-                                );
+                                await Provider.of<DataProvider>(context,
+                                        listen: false)
+                                    .deleteCar(id);
+                                Navigator.of(context).pop();
                               },
                             ),
                           ],
