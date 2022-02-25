@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'car_list.dart';
+import 'course_list.dart';
 import 'k_constant.dart';
 
 // ignore: must_be_immutable
-class CarView extends StatelessWidget {
+class CourseView extends StatelessWidget {
   late String id;
   late String image;
   late String title;
   late String price;
 
-  CarView(this.id, this.image, this.title, this.price, {Key? key})
+  CourseView(this.id, this.image, this.title, this.price, {Key? key})
       : super(key: key);
 
   @override
@@ -71,7 +71,7 @@ class CarView extends StatelessWidget {
                               onPressed: () async {
                                 await Provider.of<DataProvider>(context,
                                         listen: false)
-                                    .deleteCar(id);
+                                    .deleteCourse(id);
                                 Navigator.of(context).pop();
                               },
                             ),

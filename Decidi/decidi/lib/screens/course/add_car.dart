@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import 'car_list.dart';
+import 'course_list.dart';
 import 'k_constant.dart';
 
 class AddCar extends StatefulWidget {
@@ -147,7 +147,7 @@ class _AddCarState extends State<AddCar> {
 
                             await Provider.of<DataProvider>(context,
                                     listen: false)
-                                .addCar(carBody);
+                                .addCourse(carBody);
 
                             // await http
                             //     .post(Uri.http(baseUrl, "/createcourse"),

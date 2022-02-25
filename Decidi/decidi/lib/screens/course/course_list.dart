@@ -6,21 +6,21 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'add_car.dart';
-import 'car_view.dart';
+import 'course_view.dart';
 import 'k_constant.dart';
 
-class CarList extends StatefulWidget {
-  const CarList();
+class CourseList extends StatefulWidget {
+  const CourseList();
   @override
-  State<CarList> createState() => _CarListState();
+  State<CourseList> createState() => _CourseListState();
 }
 
-class _CarListState extends State<CarList> {
+class _CourseListState extends State<CourseList> {
   @override
   void initState() {
     super.initState();
 
-    Provider.of<DataProvider>(context, listen: false).fetchCars();
+    Provider.of<DataProvider>(context, listen: false).fetchCourse();
   }
 
   void reloadPage() {
@@ -31,13 +31,6 @@ class _CarListState extends State<CarList> {
   Widget build(BuildContext context) {
     final cars = Provider.of<DataProvider>(context).cars;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "List Course",
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Colors.white,
-        ),
         floatingActionButton: FloatingActionButton(
           child: Icon(
             Icons.add,
@@ -53,12 +46,12 @@ class _CarListState extends State<CarList> {
             );
           },
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: ListView.builder(
           itemCount: cars.length,
           itemBuilder: (context, index) {
             print(cars[index].carId);
-            return CarView(cars[index].carId, cars[index].carImage,
+            return CourseView(cars[index].carId, cars[index].carImage,
                 cars[index].carMarque, cars[index].carModel + " DT");
           },
         ));

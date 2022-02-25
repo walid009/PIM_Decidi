@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DataProvider with ChangeNotifier {
-  late List<Car> cars = [];
+  late List<Course> cars = [];
 
-  Future<void> fetchCars() async {
-    List<Car> tempcars = [];
+  Future<void> fetchCourse() async {
+    List<Course> tempcars = [];
     http.Response response = await http.get(Uri.http(baseUrl, "/allcourses"));
     List<dynamic> carsFromServer = json.decode(response.body);
     for (int i = 0; i < carsFromServer.length; i++) {
@@ -16,7 +16,7 @@ class DataProvider with ChangeNotifier {
 
       print(carsFromServer[i]["title"]);
       print(carsFromServer[i]["description"]);
-      tempcars.add(Car(
+      tempcars.add(Course(
           carsFromServer[i]["_id"].toString(),
           "" /*"http://10.0.2.2:8000/images/" + carsFromServer[i]["image"]*/,
           carsFromServer[i]["title"],
@@ -26,7 +26,7 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addCar(Map<String, dynamic> carBody) async {
+  Future<void> addCourse(Map<String, dynamic> carBody) async {
     Map<String, String> headers = {
       "Content-Type": "application/json; charset=utf-8"
     };
@@ -34,12 +34,12 @@ class DataProvider with ChangeNotifier {
         //headers: headers,
         body: carBody);
 
-    await fetchCars();
+    await fetchCourse();
   }
 
-  Future<void> deleteCar(String id) async {
+  Future<void> deleteCourse(String id) async {
     await http.delete(Uri.http(baseUrl, "/deletecourse/" + id));
 
-    await fetchCars();
+    await fetchCourse();
   }
 }

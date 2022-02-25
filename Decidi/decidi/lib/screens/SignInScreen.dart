@@ -8,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'course/organisateur/NavigationBottom.dart';
+
 class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -317,12 +319,24 @@ class _SignInScreenState extends State<SignInScreen> {
                                       await SharedPreferences.getInstance();
                                   prefs.setString("userId", userData["id"]);
 
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute<void>(
-                                      builder: (BuildContext context) =>
-                                          RootApp(),
-                                    ),
-                                  );
+                                  print(userData["role"]);
+
+                                  if (userData["role"] == "client") {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            RootApp(),
+                                      ),
+                                    );
+                                  }
+                                  if (userData["role"] == "coach") {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            NavigationBottom(),
+                                      ),
+                                    );
+                                  }
                                 } else if (response.statusCode == 404) {
                                   showDialog(
                                     context: context,
