@@ -52,13 +52,6 @@ class _CarListState extends State<CarList> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
-              appBar: AppBar(
-                title: const Text(
-                  "List Course",
-                  style: TextStyle(color: Colors.black),
-                ),
-                backgroundColor: Colors.white,
-              ),
               floatingActionButton: FloatingActionButton(
                 child: Icon(
                   Icons.add,
@@ -74,8 +67,6 @@ class _CarListState extends State<CarList> {
                   );
                 },
               ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
               body: ListView.builder(
                 itemCount: cars.length,
                 itemBuilder: (context, index) {

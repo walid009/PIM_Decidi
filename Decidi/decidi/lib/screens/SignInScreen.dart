@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:decidi/screens/SignUpScreen.dart';
+import 'package:decidi/screens/course/organisateur/NavigationBottom.dart';
 import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:flutter/material.dart';
@@ -303,7 +304,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               };
 
                               http
-                                  .post(Uri.http(baseUrl, "/loginClient"),
+                                  .post(Uri.http(baseUrlMac, "/loginClient"),
                                       headers: headers,
                                       body: json.encode(userData))
                                   .then((http.Response response) async {
@@ -316,12 +317,24 @@ class _SignInScreenState extends State<SignInScreen> {
                                       await SharedPreferences.getInstance();
                                   prefs.setString("userId", userData["id"]);
 
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute<void>(
-                                      builder: (BuildContext context) =>
-                                          RootApp(),
-                                    ),
-                                  );
+                                  print(userData["role"]);
+
+                                  if (userData["role"] == "client") {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            RootApp(),
+                                      ),
+                                    );
+                                  }
+                                  if (userData["role"] == "coach") {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            NavigationBottom(),
+                                      ),
+                                    );
+                                  }
                                 } else if (response.statusCode == 404) {
                                   showDialog(
                                     context: context,

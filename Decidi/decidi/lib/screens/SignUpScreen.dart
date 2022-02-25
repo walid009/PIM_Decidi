@@ -503,6 +503,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 "firstName": "Achref",
                                 "email": _email,
                                 "password": _password,
+                                // "role": "client"
                               };
                               print(userData);
 
@@ -512,7 +513,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               };
 
                               http
-                                  .post(Uri.http(baseUrl, "/createuser"),
+                                  .post(Uri.http(baseUrlMac, "/createuser"),
                                       headers: headers,
                                       body: json.encode(userData))
                                   .then((http.Response response) async {
