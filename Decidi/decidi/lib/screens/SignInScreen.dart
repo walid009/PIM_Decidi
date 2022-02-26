@@ -307,7 +307,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               };
 
                               http
-                                  .post(Uri.http(baseUrlMac, "/loginClient"),
+                                  .post(Uri.http(baseUrl, "/loginClient"),
                                       headers: headers,
                                       body: json.encode(userData))
                                   .then((http.Response response) async {
