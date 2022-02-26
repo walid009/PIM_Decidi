@@ -9,6 +9,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'course/organisateur/NavigationBottom.dart';
+
 class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -149,6 +151,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             onSaved: (text) {
                               _email = text;
                             },
+                            // ignore: body_might_complete_normally_nullable
                             validator: (String? value) {
                               if (value!.isEmpty) {
                                 return "Please Put your Email";

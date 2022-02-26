@@ -1,16 +1,19 @@
+import 'package:decidi/providers/DataProvider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'car_list.dart';
+import 'package:provider/provider.dart';
+import 'course_list.dart';
 import 'k_constant.dart';
 
-class CarView extends StatelessWidget {
+// ignore: must_be_immutable
+class CourseView extends StatelessWidget {
   late String id;
   late String image;
   late String title;
   late String price;
 
-  CarView(this.id, this.image, this.title, this.price, {Key? key})
+  CourseView(this.id, this.image, this.title, this.price, {Key? key})
       : super(key: key);
 
   @override
@@ -66,14 +69,10 @@ class CarView extends StatelessWidget {
                               style:
                                   ElevatedButton.styleFrom(primary: Colors.red),
                               onPressed: () async {
-                                await http.delete(
-                                    Uri.http(baseUrl, "/deletecourse/" + id));
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute<void>(
-                                    builder: (BuildContext context) =>
-                                        CarList(),
-                                  ),
-                                );
+                                await Provider.of<DataProvider>(context,
+                                        listen: false)
+                                    .deleteCourse(id);
+                                Navigator.of(context).pop();
                               },
                             ),
                           ],

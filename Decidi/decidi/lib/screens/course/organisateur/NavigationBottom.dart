@@ -1,8 +1,7 @@
 import 'package:decidi/screens/SignInScreen.dart';
+import 'package:decidi/screens/course/course_list.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../car_list.dart';
 
 class NavigationBottom extends StatefulWidget {
   const NavigationBottom({Key? key}) : super(key: key);
@@ -13,7 +12,11 @@ class NavigationBottom extends StatefulWidget {
 
 class _NavigationBottomState extends State<NavigationBottom> {
   late int current_index = 0;
-  final List<Widget> interfaces = const [CarList(), CarList(), CarList()];
+  final List<Widget> interfaces = const [
+    CourseList(),
+    CourseList(),
+    CourseList()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,34 +44,6 @@ class _NavigationBottomState extends State<NavigationBottom> {
             ListTile(
               title: Row(
                 children: const [
-                  Icon(Icons.edit),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text("Modifier profil")
-                ],
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, "/home/updateUser");
-              },
-            ),
-            ListTile(
-              title: Row(
-                children: const [
-                  Icon(Icons.tab),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text("Navigation par onglet")
-                ],
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, "/home/navTab");
-              },
-            ),
-            ListTile(
-              title: Row(
-                children: const [
                   Icon(Icons.power_settings_new),
                   SizedBox(
                     width: 10,
@@ -92,11 +67,11 @@ class _NavigationBottomState extends State<NavigationBottom> {
       body: interfaces[current_index],
       bottomNavigationBar: BottomNavigationBar(
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "store"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.article), label: "bibliotheque"),
+                icon: Icon(Icons.article), label: "Courses"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_basket_rounded), label: "panier")
+                icon: Icon(Icons.article), label: "Proposals"),
+            BottomNavigationBarItem(icon: Icon(Icons.article), label: "Groups")
           ],
           currentIndex: current_index,
           onTap: (value) {

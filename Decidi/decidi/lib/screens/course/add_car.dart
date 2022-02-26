@@ -1,8 +1,9 @@
+import 'package:decidi/providers/DataProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:provider/provider.dart';
 
-import 'car_list.dart';
+import 'course_list.dart';
 import 'k_constant.dart';
 
 class AddCar extends StatefulWidget {
@@ -134,9 +135,8 @@ class _AddCarState extends State<AddCar> {
                             _formkey.currentState!.save();
                             print("données correcte");
 
-                            Map<String, String> headers = {
-                              "Content-Type": "application/json; charset=utf-8"
-                            };
+                            // ignore: unused_local_variable
+
                             Map<String, dynamic> carBody = {
                               'title': title,
                               'capacity': capacity.toString(),
@@ -144,42 +144,32 @@ class _AddCarState extends State<AddCar> {
                               'description': description,
                               'image': 'bmw.jpg'
                             };
-                            await http
-                                .post(Uri.http(baseUrl, "/createcourse"),
-                                    //headers: headers,
-                                    body: carBody)
-                                .then((response) {
-                              print(response.statusCode);
-                              String message = response.statusCode == 200
-                                  ? "course Added"
-                                  : "Error";
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text("Info"),
-                                    content: Text(message),
-                                  );
-                                },
-                              );
-                            });
 
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text("My course Information"),
-                                  content: Text("title " +
-                                      title +
-                                      " capacity " +
-                                      capacity.toString() +
-                                      " price " +
-                                      price.toString() +
-                                      " description " +
-                                      description),
-                                );
-                              },
-                            );
+                            await Provider.of<DataProvider>(context,
+                                    listen: false)
+                                .addCourse(carBody);
+
+                            // await http
+                            //     .post(Uri.http(baseUrl, "/createcourse"),
+                            //         //headers: headers,
+                            //         body: carBody)
+                            //     .then((response) {
+                            //   print(response.statusCode);
+                            //   String message = response.statusCode == 200
+                            //       ? "course Added"
+                            //       : "Error";
+                            //   showDialog(
+                            //     context: context,
+                            //     builder: (context) {
+                            //       return AlertDialog(
+                            //         title: Text("Info"),
+                            //         content: Text(message),
+                            //       );
+                            //     },
+                            //   );
+                            // });
+
+                            Navigator.of(context).pop();
                           }
                         },
                         child: const Text(
@@ -215,24 +205,6 @@ class _AddCarState extends State<AddCar> {
                     SizedBox(
                       width: 20,
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) => CarList(),
-                            ),
-                          );
-                        },
-                        child: const Text("Back"),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.green),
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(10)),
-                            textStyle: MaterialStateProperty.all(
-                                const TextStyle(fontSize: 20)))
-                        //style: ElevatedButton.styleFrom(fixedSize: const Size(80, 80), primary: Colors.red)
-                        )
                   ],
                 ),
               ],
