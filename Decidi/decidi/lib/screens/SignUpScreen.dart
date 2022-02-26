@@ -512,7 +512,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               };
 
                               http
-                                  .post(Uri.http(baseUrlMac, "/createuser"),
+                                  .post(Uri.http(baseUrl, "/createuser"),
                                       headers: headers,
                                       body: json.encode(userData))
                                   .then((http.Response response) async {
