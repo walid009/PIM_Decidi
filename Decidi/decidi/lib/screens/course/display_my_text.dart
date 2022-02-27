@@ -30,7 +30,7 @@ class _DisplayNotesState extends State<DisplayNotes> {
               i++;
               return ListTile(
                 trailing: Text(element.toString()),
-                title: Text(ScienceMat[i]),
+                title: Text(InfoMat[i]),
               );
             }),
             SizedBox(
