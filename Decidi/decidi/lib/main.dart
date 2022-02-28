@@ -1,5 +1,5 @@
 import 'package:decidi/providers/DataProvider.dart';
-import 'package:decidi/screens/SignInScreen.dart';
+import 'package:decidi/screens/explore_page.dart';
 import 'package:decidi/screens/first_run.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: primary,
         ),
-        home: FirstRun(),
+        home:
+            //ExplorePage(),
+            FirstRun(),
       ),
     );
   }
