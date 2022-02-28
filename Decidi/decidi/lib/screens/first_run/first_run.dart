@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'course/display_my_text.dart';
+import 'display_my_text.dart';
 
 class FirstRun extends StatefulWidget {
   const FirstRun({Key? key}) : super(key: key);

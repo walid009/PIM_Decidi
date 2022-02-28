@@ -1,3 +1,4 @@
+import 'package:decidi/screens/explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:decidi/screens/account.dart';
 import 'package:decidi/screens/chat.dart';
@@ -25,7 +26,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/search.svg",
       "active_icon": "assets/icons/search.svg",
-      "page": Container(),
+      "page": ExplorePage(),
     },
     {
       "icon": "assets/icons/play.svg",
