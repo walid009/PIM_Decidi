@@ -7,7 +7,7 @@ class FeatureItem extends StatelessWidget {
   FeatureItem(
       {Key? key,
       required this.data,
-      this.width = 280,
+      this.width = 500,
       this.height = 290,
       this.onTap})
       : super(key: key);

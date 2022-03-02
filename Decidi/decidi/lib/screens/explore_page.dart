@@ -100,6 +100,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     onTap: () {
                       setState(() {
                         selectedCollection = index;
+                        print(selectedCollection);
                         isSelected = !isSelected;
                       });
                     },
@@ -108,10 +109,17 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 
   getFeature() {
-    return ListView(
-        padding: EdgeInsets.only(top: 0),
-        shrinkWrap: true,
-        children: List.generate(features.length,
-            (index) => FeatureItem(onTap: () {}, data: features[index])));
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: List.generate(
+          features.length,
+          (index) => FeatureItem(
+            onTap: () {},
+            data: features[index],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -29,7 +29,7 @@ dependencies:
   shared_preferences: ^2.0.11
   sqflite: ^2.0.1
   google_ml_kit: ^0.7.3
-  image_picker: ^0.8.1+1
+  image_picker: ^0.8.4+10
   provider: ^6.0.2
 
 dev_dependencies:

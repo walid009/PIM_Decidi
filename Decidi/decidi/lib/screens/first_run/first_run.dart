@@ -134,9 +134,7 @@ class _FirstRunState extends State<FirstRun> {
                             if (imagePath == "asd") {
                               showAlertDialog(context);
                             } else {
-                              Future.delayed(const Duration(seconds: 3), () {
-                                getText(imagePath);
-                              });
+                              getText(imagePath);
                             }
                           },
                           child: const Text("get text"),
