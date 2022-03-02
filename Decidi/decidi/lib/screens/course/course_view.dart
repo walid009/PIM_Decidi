@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'course_list.dart';
-import 'k_constant.dart';
 
 // ignore: must_be_immutable
 class CourseView extends StatelessWidget {
@@ -34,8 +33,8 @@ class CourseView extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
                 child: Row(
                   children: [
-                    Image.asset(
-                      "assets/images/node.png",
+                    Image.network(
+                      image,
                       width: 100,
                       height: 100,
                     ),

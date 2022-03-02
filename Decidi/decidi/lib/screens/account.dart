@@ -4,6 +4,9 @@ import 'package:decidi/utils/data.dart';
 import 'package:decidi/widgets/custom_image.dart';
 import 'package:decidi/widgets/setting_box.dart';
 import 'package:decidi/widgets/setting_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'SignInScreen.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -209,7 +212,16 @@ class _AccountPageState extends State<AccountPage> {
                 title: "Log Out",
                 leadingIcon: "assets/icons/logout.svg",
                 bgIconColor: darker,
-                onTap: () {},
+                onTap: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.remove("userId");
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => SignInScreen(),
+                    ),
+                  );
+                },
               ),
             ]),
           ),

@@ -319,9 +319,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                   SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
                                   prefs.setString("userId", userData["id"]);
-
-                                  print(userData["role"]);
-
+                                  prefs.setString(
+                                      "userEmail", userData["email"]);
                                   if (userData["role"] == "client") {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute<void>(

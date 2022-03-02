@@ -6,6 +6,11 @@ import 'package:decidi/widgets/category_box.dart';
 import 'package:decidi/widgets/feature_item.dart';
 import 'package:decidi/widgets/notification_box.dart';
 import 'package:decidi/widgets/recommend_item.dart';
+import 'package:provider/provider.dart';
+
+import '../models/course.dart';
+import '../providers/DataProvider.dart';
+import 'course/detail_course.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,6 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final listcourses = Provider.of<DataProvider>(context).listCourse;
     return Scaffold(
         backgroundColor: appBgColor,
         body: CustomScrollView(
@@ -30,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) => buildBody(),
+                (context, index) => buildBody(listcourses),
                 childCount: 1,
               ),
             )
@@ -75,7 +81,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  buildBody() {
+  buildBody(List<Course> listcourses) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -93,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                   fontSize: 24,
                 )),
           ),
-          getFeature(),
+          getFeature(listcourses),
           SizedBox(
             height: 15,
           ),
@@ -144,7 +150,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  getFeature() {
+  getFeature(List<Course> listcourses) {
     return CarouselSlider(
         options: CarouselOptions(
           height: 290,
@@ -152,8 +158,29 @@ class _HomePageState extends State<HomePage> {
           disableCenter: true,
           viewportFraction: .75,
         ),
-        items: List.generate(features.length,
-            (index) => FeatureItem(onTap: () {}, data: features[index])));
+        items: List.generate(
+            listcourses.length,
+            (index) => FeatureItem(
+                  onTap: () {
+                    print(listcourses.length);
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            DetailCourse(listcourses[index].courseId),
+                      ),
+                    );
+                  },
+                  id: listcourses[index].courseId,
+                  image: listcourses[index].courseImage,
+                  title: listcourses[index].courseTitle,
+                  capacity: listcourses[index].courseCapacity,
+                  nbParticipant: listcourses[index]
+                      .courseListParticipants
+                      .length
+                      .toString(),
+                  price: listcourses[index].coursePrice,
+                  description: listcourses[index].courseDescription,
+                )));
   }
 
   getRecommend() {
