@@ -4,17 +4,16 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 import 'course_list.dart';
-import 'k_constant.dart';
 
-class AddCar extends StatefulWidget {
-  const AddCar({Key? key, required this.reload}) : super(key: key);
+class AddCourse extends StatefulWidget {
+  const AddCourse({Key? key, required this.reload}) : super(key: key);
   final Function reload;
 
   @override
-  State<AddCar> createState() => _AddCarState();
+  State<AddCourse> createState() => _AddCourseState();
 }
 
-class _AddCarState extends State<AddCar> {
+class _AddCourseState extends State<AddCourse> {
   late String title;
   late int capacity;
   late int price;
@@ -142,7 +141,8 @@ class _AddCarState extends State<AddCar> {
                               'capacity': capacity.toString(),
                               'price': price.toString(),
                               'description': description,
-                              'image': 'bmw.jpg'
+                              'image':
+                                  'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/800px-Node.js_logo.svg.png'
                             };
 
                             await Provider.of<DataProvider>(context,

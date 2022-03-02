@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:decidi/models/course.dart';
-import 'package:decidi/screens/course/k_constant.dart';
+import 'package:decidi/screens/course/detail_course.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/constant.dart';
 
 class DataProvider with ChangeNotifier {
-  late List<Course> cars = [];
+  late List<Course> listCourse = [];
+  late bool exist = true;
 
   Future<void> fetchCourse() async {
     List<Course> tempcars = [];
@@ -17,12 +21,16 @@ class DataProvider with ChangeNotifier {
       print(carsFromServer[i]["title"]);
       print(carsFromServer[i]["description"]);
       tempcars.add(Course(
-          carsFromServer[i]["_id"].toString(),
-          "" /*"http://10.0.2.2:8000/images/" + carsFromServer[i]["image"]*/,
+          carsFromServer[i]["_id"],
+          carsFromServer[i]["image"],
           carsFromServer[i]["title"],
-          carsFromServer[i]["price"]));
+          carsFromServer[i]["description"],
+          carsFromServer[i]["price"],
+          carsFromServer[i]["capacity"],
+          carsFromServer[i]["nbParticipant"],
+          carsFromServer[i]["participants"]));
     }
-    cars = tempcars;
+    listCourse = tempcars;
     notifyListeners();
   }
 
@@ -33,6 +41,18 @@ class DataProvider with ChangeNotifier {
     await http.post(Uri.http(baseUrl, "/createcourse"),
         //headers: headers,
         body: carBody);
+
+    await fetchCourse();
+  }
+
+  Future<void> participateToCourse(String idc) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await http.put(Uri.http(
+        baseUrl,
+        "/particpatetocourse/" +
+            prefs.getString("userId").toString() +
+            "/" +
+            idc));
 
     await fetchCourse();
   }

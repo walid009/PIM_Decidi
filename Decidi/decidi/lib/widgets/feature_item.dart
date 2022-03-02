@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:decidi/theme/color.dart';
 
+import '../models/course.dart';
 import 'custom_image.dart';
 
 class FeatureItem extends StatelessWidget {
   FeatureItem(
       {Key? key,
-      required this.data,
+      required this.id,
+      required this.image,
+      required this.title,
+      required this.capacity,
+      required this.nbParticipant,
+      required this.price,
+      required this.description,
       this.width = 280,
       this.height = 290,
       this.onTap})
       : super(key: key);
-  final data;
+  final String id;
+  final String image;
+  late String title;
+  late String capacity;
+  late String nbParticipant;
+  late String price;
+  late String description;
+
   final double width;
   final double height;
   final GestureTapCallback? onTap;
@@ -40,7 +54,7 @@ class FeatureItem extends StatelessWidget {
         child: Stack(
           children: [
             CustomImage(
-              data["image"],
+              image,
               width: double.infinity,
               height: 190,
               radius: 15,
@@ -63,7 +77,7 @@ class FeatureItem extends StatelessWidget {
                   ],
                 ),
                 child: Text(
-                  data["price"],
+                  price + " DT",
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.w500),
                 ),
@@ -78,7 +92,7 @@ class FeatureItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data["name"],
+                      title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -92,17 +106,17 @@ class FeatureItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        getAttribute(Icons.play_circle_outlined, labelColor,
-                            data["session"]),
+                        getAttribute(Icons.reduce_capacity, labelColor,
+                            "capacity:" + capacity),
                         SizedBox(
                           width: 12,
                         ),
-                        getAttribute(Icons.schedule_rounded, labelColor,
-                            data["duration"]),
-                        SizedBox(
+                        getAttribute(Icons.incomplete_circle, labelColor,
+                            "participant:" + nbParticipant),
+                        /*SizedBox(
                           width: 12,
                         ),
-                        getAttribute(Icons.star, yellow, data["review"]),
+                        getAttribute(Icons.star, yellow, price),*/
                       ],
                     ),
                   ],
