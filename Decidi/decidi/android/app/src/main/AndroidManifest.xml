@@ -3,7 +3,10 @@
    <application
         android:label="Decidi"
         android:usesCleartextTraffic="true"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:replace="android:label"
+       >
         <activity
             android:name=".MainActivity"
             android:exported="true"
