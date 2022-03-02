@@ -290,7 +290,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             print("button pressed");
                             if (_keyForm.currentState!.validate()) {
                               _keyForm.currentState!.save();
