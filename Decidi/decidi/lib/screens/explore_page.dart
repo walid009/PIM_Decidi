@@ -112,13 +112,7 @@ class _ExplorePageState extends State<ExplorePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
-        children: List.generate(
-          features.length,
-          (index) => FeatureItem(
-            onTap: () {},
-            data: features[index],
-          ),
-        ),
+        children: [],
       ),
     );
   }
