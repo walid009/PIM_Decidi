@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:decidi/screens/SignInScreen.dart';
-import 'package:decidi/screens/first_run.dart';
+import 'package:decidi/screens/first_run/first_run.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

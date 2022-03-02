@@ -28,3 +28,18 @@ List<String> ScienceMat = [
   "Option",
   "Moy Generale"
 ];
+
+List<String> MathMat = [
+  "Mathematique",
+  "Physique",
+  "Science",
+  "Anglais",
+  "Francais",
+  "Arabe",
+  "Philo",
+  "Info",
+  "Sport",
+  "Option",
+  "Moy Generale"
+];
+
