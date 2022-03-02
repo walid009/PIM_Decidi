@@ -1,4 +1,31 @@
 PODS:
+  - Braintree/ApplePay (5.6.3):
+    - Braintree/Core
+  - Braintree/Card (5.6.3):
+    - Braintree/Core
+  - Braintree/Core (5.6.3)
+  - Braintree/PaymentFlow (5.6.3):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPal (5.6.3):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPalDataCollector (5.6.3)
+  - Braintree/ThreeDSecure (5.6.3):
+    - Braintree/Card
+    - Braintree/PaymentFlow
+  - Braintree/UnionPay (5.6.3):
+    - Braintree/Card
+  - Braintree/Venmo (5.6.3):
+    - Braintree/Core
+  - BraintreeDropIn (9.4.0):
+    - Braintree/ApplePay (~> 5.6.1)
+    - Braintree/Card (~> 5.6.1)
+    - Braintree/Core (~> 5.6.1)
+    - Braintree/PayPal (~> 5.6.1)
+    - Braintree/ThreeDSecure (~> 5.6.1)
+    - Braintree/UnionPay (~> 5.6.1)
+    - Braintree/Venmo (~> 5.6.1)
   - FirebaseCore (8.12.1):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -14,6 +41,11 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (< 3.0, >= 1.2)
   - Flutter (1.0.0)
+  - flutter_braintree (1.0.0):
+    - Braintree/ApplePay (~> 5.6.3)
+    - Braintree/PayPal (~> 5.6.3)
+    - BraintreeDropIn (= 9.4.0)
+    - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -192,6 +224,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_braintree (from `.symlinks/plugins/flutter_braintree/ios`)
   - google_ml_kit (from `.symlinks/plugins/google_ml_kit/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
@@ -201,6 +234,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Braintree
+    - BraintreeDropIn
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
@@ -239,6 +274,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_braintree:
+    :path: ".symlinks/plugins/flutter_braintree/ios"
   google_ml_kit:
     :path: ".symlinks/plugins/google_ml_kit/ios"
   image_picker:
@@ -253,10 +290,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  Braintree: cef7388a3647515f1e0861e52200c2f3dad0f98f
+  BraintreeDropIn: 89df35f840004affa22ebb8f06b12d20615411bf
   FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
   FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
   FirebaseInstallations: 25764cf322e77f99449395870a65b2bef88e1545
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_braintree: 72276002464c36b1d5a6266fbdb94c0b600e62fd
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_ml_kit: a85eefb9ea6156b27ee2fba2b71e461e7b26a4f6
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
@@ -295,6 +335,6 @@ SPEC CHECKSUMS:
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   url_launcher: b6e016d912f04be9f5bf6e8e82dc599b7ba59649
 
-PODFILE CHECKSUM: 667970b60cf3ede37c1b2ae302555b0e8cd376f5
+PODFILE CHECKSUM: 27853e442322fddc8600e28cc46e655f3e995c1d
 
 COCOAPODS: 1.11.2

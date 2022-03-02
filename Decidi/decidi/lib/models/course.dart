@@ -1,8 +1,22 @@
-class Course {
-  late String carId;
-  late String carImage;
-  late String carMarque;
-  late String carModel;
+import 'package:decidi/models/user.dart';
 
-  Course(this.carId, this.carImage, this.carMarque, this.carModel);
+class Course {
+  late String courseId;
+  late String courseImage;
+  late String courseTitle;
+  late String courseDescription;
+  late String coursePrice;
+  late String courseCapacity;
+  late String courseNbParticipant;
+  late List<dynamic> courseListParticipants;
+
+  Course(
+      this.courseId,
+      this.courseImage,
+      this.courseTitle,
+      this.courseDescription,
+      this.coursePrice,
+      this.courseCapacity,
+      this.courseNbParticipant,
+      this.courseListParticipants);
 }

@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
-import 'add_car.dart';
+import 'add_course.dart';
 import 'course_view.dart';
-import 'k_constant.dart';
 
 class CourseList extends StatefulWidget {
   const CourseList();
@@ -29,7 +28,7 @@ class _CourseListState extends State<CourseList> {
 
   @override
   Widget build(BuildContext context) {
-    final cars = Provider.of<DataProvider>(context).cars;
+    final cars = Provider.of<DataProvider>(context).listCourse;
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           child: Icon(
@@ -39,7 +38,7 @@ class _CourseListState extends State<CourseList> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (BuildContext context) => AddCar(
+                builder: (BuildContext context) => AddCourse(
                   reload: reloadPage,
                 ),
               ),
@@ -50,9 +49,9 @@ class _CourseListState extends State<CourseList> {
         body: ListView.builder(
           itemCount: cars.length,
           itemBuilder: (context, index) {
-            print(cars[index].carId);
-            return CourseView(cars[index].carId, cars[index].carImage,
-                cars[index].carMarque, cars[index].carModel + " DT");
+            print(cars[index].courseId);
+            return CourseView(cars[index].courseId, cars[index].courseImage,
+                cars[index].courseTitle, cars[index].coursePrice + "DT");
           },
         ));
   }
