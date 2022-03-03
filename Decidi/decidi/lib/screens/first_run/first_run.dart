@@ -137,7 +137,12 @@ class _FirstRunState extends State<FirstRun> {
                               getText(imagePath);
                             }
                           },
-                          child: const Text("get text"),
+                          child: const Text(
+                            "get text",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
                     ],
