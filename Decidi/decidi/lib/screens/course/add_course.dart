@@ -110,11 +110,21 @@ class _AddCourseState extends State<AddCourse> {
                 height: 10,
               ),
               TextFormField(
+                cursorColor: Colors.black,
                 decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
                   border: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   labelText: "Capacity",
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
                 onSaved: (value) {
                   capacity = int.parse(value!);
@@ -133,12 +143,21 @@ class _AddCourseState extends State<AddCourse> {
                 height: 10,
               ),
               TextFormField(
+                cursorColor: Colors.black,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   labelText: "Price",
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
                 onSaved: (value) {
                   price = int.parse(value!);
@@ -157,12 +176,21 @@ class _AddCourseState extends State<AddCourse> {
                 height: 10,
               ),
               TextFormField(
+                cursorColor: Colors.black,
                 maxLines: 3,
                 decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   labelText: "description",
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
                 onSaved: (value) {
                   description = value!;

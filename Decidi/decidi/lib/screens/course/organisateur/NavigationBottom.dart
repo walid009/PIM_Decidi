@@ -22,47 +22,28 @@ class _NavigationBottomState extends State<NavigationBottom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 2.0,
         title: const Text(
           "List Course",
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.remove("userId");
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => SignInScreen(),
+                ),
+              );
+            },
+            icon: Icon(Icons.logout_outlined),
+          )
+        ],
         // shadowColor: Colors.black,
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            AppBar(
-              title: const Text(
-                "List Course",
-                style: TextStyle(color: Colors.black),
-              ),
-              backgroundColor: Colors.white,
-              automaticallyImplyLeading: false,
-            ),
-            ListTile(
-              title: Row(
-                children: const [
-                  Icon(Icons.power_settings_new),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text("Se deconnecter")
-                ],
-              ),
-              onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.remove("userId");
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => SignInScreen(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
       ),
       body: interfaces[current_index],
       bottomNavigationBar: BottomNavigationBar(
