@@ -1,7 +1,5 @@
 import 'package:decidi/providers/DataProvider.dart';
-import 'package:decidi/screens/SignInScreen.dart';
-import 'package:decidi/screens/course/course_list.dart';
-import 'package:decidi/screens/root_app.dart';
+import 'package:decidi/screens/admin/dashboard_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'theme/color.dart';
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: primary,
           ),
-          home: SignInScreen()
+          home: DashboardAdmin()
           //RootApp()
           // HomePage()
 

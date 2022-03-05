@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:decidi/models/course.dart';
-import 'package:decidi/screens/course/detail_course.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -59,6 +58,21 @@ class DataProvider with ChangeNotifier {
 
   Future<void> deleteCourse(String id) async {
     await http.delete(Uri.http(baseUrl, "/deletecourse/" + id));
+
+    await fetchCourse();
+  }
+
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
+
+  Future<void> addProposition(Map<String, dynamic> propositionBody) async {
+    Map<String, String> headers = {
+      "Content-Type": "application/json; charset=utf-8"
+    };
+    await http.post(Uri.http(baseUrl, "/createproposition"),
+        //headers: headers,
+        body: propositionBody);
 
     await fetchCourse();
   }

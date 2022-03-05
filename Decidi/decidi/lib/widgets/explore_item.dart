@@ -4,8 +4,8 @@ import 'package:decidi/theme/color.dart';
 import 'custom_image.dart';
 
 // ignore: must_be_immutable
-class FeatureItem extends StatelessWidget {
-  FeatureItem(
+class ExploreItem extends StatelessWidget {
+  ExploreItem(
       {Key? key,
       required this.id,
       required this.image,
@@ -14,7 +14,7 @@ class FeatureItem extends StatelessWidget {
       required this.nbParticipant,
       required this.price,
       required this.description,
-      this.width = 280,
+      this.width = 400,
       this.height = 290,
       this.onTap})
       : super(key: key);
@@ -113,10 +113,9 @@ class FeatureItem extends StatelessWidget {
                         ),
                         getAttribute(Icons.incomplete_circle, labelColor,
                             "participant:" + nbParticipant),
-                        /*SizedBox(
-                          width: 12,
+                        SizedBox(
+                          width: 0,
                         ),
-                        getAttribute(Icons.star, yellow, price),*/
                       ],
                     ),
                   ],

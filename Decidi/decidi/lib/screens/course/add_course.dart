@@ -92,7 +92,7 @@ class _AddCourseState extends State<AddCourse> {
                   ),
                   labelText: "Title",
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
@@ -123,7 +123,7 @@ class _AddCourseState extends State<AddCourse> {
                   ),
                   labelText: "Capacity",
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
@@ -156,7 +156,7 @@ class _AddCourseState extends State<AddCourse> {
                   ),
                   labelText: "Price",
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
@@ -189,7 +189,7 @@ class _AddCourseState extends State<AddCourse> {
                   ),
                   labelText: "description",
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
