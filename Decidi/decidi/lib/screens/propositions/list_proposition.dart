@@ -48,6 +48,7 @@ class _ListPropositionState extends State<ListProposition> {
         itemCount: propositions.length,
         itemBuilder: (context, index) {
           return PropositionItem(
+            propositions[index].propositionId,
             propositions[index].propositionAcademicBackground,
             propositions[index].propositionUniversityName,
             propositions[index].propositionDescription,

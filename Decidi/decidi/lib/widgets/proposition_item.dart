@@ -1,12 +1,15 @@
+import 'package:decidi/screens/propositions/update_proposition.dart';
 import 'package:flutter/material.dart';
 import 'package:decidi/theme/color.dart';
 
+// ignore: must_be_immutable
 class PropositionItem extends StatelessWidget {
-  PropositionItem(
-      this.academicBackground, this.universityName, this.description,
+  PropositionItem(this.propositionId, this.academicBackground,
+      this.universityName, this.description,
       {Key? key})
       : super(key: key);
 
+  late String propositionId;
   late String academicBackground;
   late String universityName;
   late String description;
@@ -20,7 +23,17 @@ class PropositionItem extends StatelessWidget {
         ),
         Center(
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => UpdateProposition(
+                      propositionId: propositionId,
+                      academicBackground: academicBackground,
+                      universityName: universityName,
+                      description: description),
+                ),
+              );
+            },
             child: Container(
                 padding: EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width * 0.95,

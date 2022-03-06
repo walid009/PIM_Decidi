@@ -73,7 +73,23 @@ class DataProvider with ChangeNotifier {
     await http.post(Uri.http(baseUrl, "/createproposition"),
         body: propositionBody);
 
-    await fetchCourse();
+    await fetchPropositions();
+  }
+
+  Future<void> updateProposition(Map<String, dynamic> propositionBody) async {
+    print("update" + propositionBody["_id"]);
+    await http.put(
+        Uri.http(baseUrl, "/updateproposition/" + propositionBody["_id"]),
+        body: propositionBody);
+
+    await fetchPropositions();
+  }
+
+  Future<void> deleteProposition(String id) async {
+    print("delete " + id);
+    await http.delete(Uri.http(baseUrl, "/deleteproposition/" + id));
+
+    await fetchPropositions();
   }
 
   Future<void> fetchPropositions() async {
@@ -84,7 +100,6 @@ class DataProvider with ChangeNotifier {
     List<dynamic> PropositionsFromServer = json.decode(response.body);
 
     for (int i = 0; i < PropositionsFromServer.length; i++) {
-      print(PropositionsFromServer[i]["academicBackground"]);
       tempproposition.add(
         Proposition(
           PropositionsFromServer[i]["_id"],
@@ -97,4 +112,8 @@ class DataProvider with ChangeNotifier {
     listpropositions = tempproposition;
     notifyListeners();
   }
+
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
 }
