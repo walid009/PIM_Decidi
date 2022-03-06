@@ -1,7 +1,9 @@
 import 'package:decidi/screens/SignInScreen.dart';
+import 'package:decidi/screens/admin/admin_home_page.dart';
 import 'package:decidi/screens/propositions/list_proposition.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardAdmin extends StatefulWidget {
@@ -12,6 +14,8 @@ class DashboardAdmin extends StatefulWidget {
 }
 
 class _DashboardAdminState extends State<DashboardAdmin> {
+  final bool isSelected = false;
+  final Color selectedColor = actionColor;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,7 +33,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
                     height: 50,
                     child: Center(
                       child: Text(
-                        "Main",
+                        "Home",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: labelColor,
@@ -78,13 +82,18 @@ class _DashboardAdminState extends State<DashboardAdmin> {
                   ),
                 );
               },
-              icon: Icon(Icons.logout_outlined),
+              icon: SvgPicture.asset(
+                "assets/icons/logout.svg",
+                color: isSelected ? selectedColor : textColor,
+                width: 30,
+                height: 30,
+              ),
             )
           ],
           // shadowColor: Colors.black,
         ),
         body: TabBarView(children: [
-          Icon(Icons.stadium),
+          AdminHomePage(),
           ListProposition(),
         ]),
       ),

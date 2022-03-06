@@ -64,7 +64,10 @@ class _UpdatePropositionState extends State<UpdateProposition> {
                     );
                   });
             },
-            icon: Icon(Icons.delete_outlined),
+            icon: Icon(
+              Icons.delete_outline_rounded,
+              size: 30,
+            ),
             color: Colors.black,
           )
         ],
