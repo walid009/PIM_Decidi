@@ -30,29 +30,30 @@ class _CourseListState extends State<CourseList> {
   Widget build(BuildContext context) {
     final cars = Provider.of<DataProvider>(context).listCourse;
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Icons.add,
-          ),
-          backgroundColor: primary,
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (BuildContext context) => AddCourse(
-                  reload: reloadPage,
-                ),
-              ),
-            );
-          },
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
         ),
-        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        body: ListView.builder(
-          itemCount: cars.length,
-          itemBuilder: (context, index) {
-            print(cars[index].courseId);
-            return CourseView(cars[index].courseId, cars[index].courseImage,
-                cars[index].courseTitle, cars[index].coursePrice + "DT");
-          },
-        ));
+        backgroundColor: primary,
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => AddCourse(
+                reload: reloadPage,
+              ),
+            ),
+          );
+        },
+      ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: ListView.builder(
+        itemCount: cars.length,
+        itemBuilder: (context, index) {
+          print(cars[index].courseId);
+          return CourseView(cars[index].courseId, cars[index].courseImage,
+              cars[index].courseTitle, cars[index].coursePrice + "DT");
+        },
+      ),
+    );
   }
 }
