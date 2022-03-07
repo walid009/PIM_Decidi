@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:decidi/models/course.dart';
-import 'package:decidi/screens/course/detail_course.dart';
+import 'package:decidi/models/proposition.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +10,8 @@ import '../utils/constant.dart';
 
 class DataProvider with ChangeNotifier {
   late List<Course> listCourse = [];
+  late List<Proposition> listpropositions = [];
+
   late bool exist = true;
 
   Future<void> fetchCourse() async {
@@ -83,4 +85,56 @@ class DataProvider with ChangeNotifier {
 
     await fetchCourse();
   }
+
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
+
+  Future<void> addProposition(Map<String, dynamic> propositionBody) async {
+    await http.post(Uri.http(baseUrl, "/createproposition"),
+        body: propositionBody);
+
+    await fetchPropositions();
+  }
+
+  Future<void> updateProposition(Map<String, dynamic> propositionBody) async {
+    print("update" + propositionBody["_id"]);
+    await http.put(
+        Uri.http(baseUrl, "/updateproposition/" + propositionBody["_id"]),
+        body: propositionBody);
+
+    await fetchPropositions();
+  }
+
+  Future<void> deleteProposition(String id) async {
+    print("delete " + id);
+    await http.delete(Uri.http(baseUrl, "/deleteproposition/" + id));
+
+    await fetchPropositions();
+  }
+
+  Future<void> fetchPropositions() async {
+    List<Proposition> tempproposition = [];
+    http.Response response =
+        await http.get(Uri.http(baseUrl, "/allproposition"));
+
+    List<dynamic> PropositionsFromServer = json.decode(response.body);
+
+    for (int i = 0; i < PropositionsFromServer.length; i++) {
+      tempproposition.add(
+        Proposition(
+          PropositionsFromServer[i]["_id"],
+          PropositionsFromServer[i]["academicBackground"],
+          PropositionsFromServer[i]["universityName"],
+          PropositionsFromServer[i]["description"],
+        ),
+      );
+    }
+    listpropositions = tempproposition;
+    notifyListeners();
+  }
+
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
 }

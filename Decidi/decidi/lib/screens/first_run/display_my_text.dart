@@ -40,8 +40,7 @@ class _DisplayNotesState extends State<DisplayNotes> {
               i++;
               return ListTile(
                 trailing: Text(element.toString()),
-                title: Text(InfoMat[i]),
-                //getSubjects(i),
+                title: getSubjects(widget.type),
               );
             }),
             SizedBox(
@@ -61,8 +60,8 @@ class _DisplayNotesState extends State<DisplayNotes> {
     );
   }
 
-  getSubjects(int i) {
-    switch (widget.type) {
+  getSubjects(type) {
+    switch (type) {
       case "Info":
         {
           return Text(InfoMat[i]);
@@ -79,17 +78,17 @@ class _DisplayNotesState extends State<DisplayNotes> {
         }
       case "Tech":
         {
-          return Text("TechMat[i]");
+          return Text(TechMat[i]);
         }
 
       case "Lettre":
         {
-          return Text("LettreMat[i]");
+          return Text(LettreMat[i]);
         }
 
       case "Eco":
         {
-          return Text("EcoMat[i]");
+          return Text(EcoMat[i]);
         }
       default:
         {

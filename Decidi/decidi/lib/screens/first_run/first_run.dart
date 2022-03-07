@@ -167,12 +167,14 @@ class _FirstRunState extends State<FirstRun> {
         for (TextElement textElement in textLine.elements) {
           setState(() {
             if (textElement.text.length == 5 &&
-                textElement.text.contains(",")) {
+                (textElement.text.contains(",") ||
+                    textElement.text.contains("."))) {
               var rep = textElement.text.replaceAll(',', '.');
               bacGradesData.add(MyData(x: rep));
             }
             data.add(MyData(x: textElement.text));
             finalText = finalText + " " + textElement.text;
+            print(finalText);
           });
         }
 

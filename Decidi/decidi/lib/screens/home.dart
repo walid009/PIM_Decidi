@@ -192,14 +192,17 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
       scrollDirection: Axis.horizontal,
       child: Row(
-          children: List.generate(
-              recommends.length,
-              (index) => Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: RecommendItem(
-                    data: recommends[index],
-                    onTap: () {},
-                  )))),
+        children: List.generate(
+          recommends.length,
+          (index) => Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: RecommendItem(
+              data: recommends[index],
+              onTap: () {},
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

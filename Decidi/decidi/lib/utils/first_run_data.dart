@@ -15,6 +15,21 @@ List<String> InfoMat = [
   "Moy Generale"
 ];
 
+List<String> TechMat = [
+  "Electrique et Mecanique",
+  "Mathematique",
+  "Physique",
+  "Anglais",
+  "Francais",
+  "Arabe",
+  "Philo",
+  "Info",
+  "Technologie appliquée",
+  "Sport",
+  "Option",
+  "Moy Generale"
+];
+
 List<String> ScienceMat = [
   "Physique",
   "Science",
