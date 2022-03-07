@@ -1,6 +1,8 @@
 import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/SignInScreen.dart';
+import 'package:decidi/screens/course/add_course.dart';
 import 'package:decidi/screens/course/course_list.dart';
+import 'package:decidi/screens/course/meet.dart';
 import 'package:decidi/screens/root_app.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

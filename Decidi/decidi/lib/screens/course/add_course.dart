@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import 'course_list.dart';
@@ -20,6 +24,19 @@ class _AddCourseState extends State<AddCourse> {
   late int price;
   late String description;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  File? image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      print(image.path);
+      setState(() => this.image = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +87,15 @@ class _AddCourseState extends State<AddCourse> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
-                  child: Image.asset(
-                    "assets/images/node.png",
-                    fit: BoxFit.fill,
-                  ),
+                  child: image != null
+                      ? Image.file(
+                          image!,
+                          fit: BoxFit.fill,
+                        )
+                      : Image.asset(
+                          "assets/images/node.png",
+                          fit: BoxFit.fill,
+                        ),
                 ),
               ),
               SizedBox(
@@ -206,6 +228,27 @@ class _AddCourseState extends State<AddCourse> {
               const SizedBox(
                 height: 10,
               ),
+              SizedBox(
+                height: 30,
+                width: MediaQuery.of(context).size.height * 0.4,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    pickImage();
+                  },
+                  child: Text(
+                    "Upload an image",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    primary: primary,
+                    shadowColor: shadowColor,
+                    elevation: 1.0,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -242,7 +285,7 @@ class _AddCourseState extends State<AddCourse> {
               width: MediaQuery.of(context).size.height * 0.4,
               child: ElevatedButton(
                 onPressed: () async {
-                  if (_formkey.currentState!.validate()) {
+                  if (_formkey.currentState!.validate() && image != null) {
                     _formkey.currentState!.save();
                     print("données correcte");
 
@@ -252,13 +295,12 @@ class _AddCourseState extends State<AddCourse> {
                       'title': title,
                       'capacity': capacity.toString(),
                       'price': price.toString(),
-                      'description': description,
-                      'image':
-                          'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/800px-Node.js_logo.svg.png'
+                      'description': description
                     };
 
                     await Provider.of<DataProvider>(context, listen: false)
-                        .addCourse(carBody);
+                        .addCourse(title, capacity.toString(), price.toString(),
+                            description, image!);
 
                     // await http
                     //     .post(Uri.http(baseUrl, "/createcourse"),
