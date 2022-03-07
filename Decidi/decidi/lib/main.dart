@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: primary,
           ),
-          home: DashboardAdmin()
+          home: SignInScreen()
           //RootApp()
           // HomePage()
 
