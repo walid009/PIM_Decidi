@@ -166,27 +166,26 @@ class _SettingPageState extends State<SettingPage> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 12),
                   child: TextFormField(
-                    initialValue: "*********",
                     onSaved: (text) {
-                      Npassword = text;
+                      _password = text;
                     },
                     // ignore: body_might_complete_normally_nullable
                     validator: (String? value) {
                       if (value!.isEmpty) {
-                        return "Please Put your New password";
+                        return "Please Put your Old password";
                       }
                     },
 
-                    obscureText: false,
+                    obscureText: true,
                     decoration: InputDecoration(
-                      labelText: 'Your New password...',
+                      labelText: 'Old password',
                       labelStyle: const TextStyle(
                         fontFamily: 'Lexend Deca',
                         color: Color(0xFF57636C),
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
                       ),
-                      hintText: 'Enter your New password...',
+                      hintText: 'Enter your Old password...',
                       hintStyle: const TextStyle(
                         fontFamily: 'Lexend Deca',
                         color: Color(0xFF57636C),
@@ -223,27 +222,27 @@ class _SettingPageState extends State<SettingPage> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 12),
                   child: TextFormField(
-                    initialValue: "*********",
                     onSaved: (text) {
-                      _password = text;
+                      Npassword = text;
                     },
+
                     // ignore: body_might_complete_normally_nullable
                     validator: (String? value) {
                       if (value!.isEmpty) {
-                        return "Please Put your Password";
+                        return "Please Put your New Password";
                       }
                     },
 
-                    obscureText: false,
+                    obscureText: true,
                     decoration: InputDecoration(
-                      labelText: 'Your Password...',
+                      labelText: 'New Password',
                       labelStyle: const TextStyle(
                         fontFamily: 'Lexend Deca',
                         color: Color(0xFF57636C),
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
                       ),
-                      hintText: 'Enter your Password...',
+                      hintText: 'Enter your New Password...',
                       hintStyle: const TextStyle(
                         fontFamily: 'Lexend Deca',
                         color: Color(0xFF57636C),

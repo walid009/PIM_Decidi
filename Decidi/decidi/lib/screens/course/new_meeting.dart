@@ -1,5 +1,6 @@
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:decidi/screens/course/video_call.dart';
+import 'package:decidi/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share/share.dart';
@@ -34,7 +35,7 @@ class _NewMeetingState extends State<NewMeeting> {
             Align(
               alignment: Alignment.topLeft,
               child: InkWell(
-                  child: Icon(Icons.arrow_back_ios_new_sharp, size: 35),
+                  child: Icon(Icons.arrow_back_outlined, size: 35),
                   onTap: () {
                     Navigator.pop(context);
                   }),
@@ -48,14 +49,14 @@ class _NewMeetingState extends State<NewMeeting> {
             SizedBox(height: 20),
             Text(
               "Enter meeting code below",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
               child: Card(
                   color: Colors.grey[300],
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   child: ListTile(
                     leading: Icon(Icons.link),
@@ -67,51 +68,59 @@ class _NewMeetingState extends State<NewMeeting> {
                   )),
             ),
             Divider(thickness: 1, height: 40, indent: 20, endIndent: 20),
-            ElevatedButton.icon(
-              onPressed: () {
-                Share.share("Meeting Code : $_meetingCode");
-              },
-              icon: Icon(Icons.arrow_drop_down),
-              label: Text("Share invite"),
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(350, 30),
-                primary: Colors.indigo,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
+            SizedBox(
+              height: 45,
+              width: MediaQuery.of(context).size.height * 0.55,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Share.share("Meeting Code : $_meetingCode");
+                },
+                icon: Icon(Icons.arrow_drop_down),
+                label: Text("Share invite"),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  primary: primary,
+                  shadowColor: shadowColor,
+                  elevation: 1.0,
+                ),
               ),
             ),
             SizedBox(height: 20),
-            OutlinedButton.icon(
-              onPressed: () async {
-                await _handleCameraAndMic(Permission.camera);
-                await _handleCameraAndMic(Permission.microphone);
-                // push video page with given channel name
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CallPage(
-                      channelName: _meetingCode.trim(),
-                      role: _role,
+            SizedBox(
+              height: 45,
+              width: MediaQuery.of(context).size.height * 0.55,
+              child: OutlinedButton.icon(
+                onPressed: () async {
+                  await _handleCameraAndMic(Permission.camera);
+                  await _handleCameraAndMic(Permission.microphone);
+                  // push video page with given channel name
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CallPage(
+                        channelName: _meetingCode.trim(),
+                        role: _role,
+                      ),
                     ),
-                  ),
-                );
+                  );
 
-                /*Navigator.of(context).push(
+                  /*Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) =>
                         VideoCall(channelName: _meetingCode.trim()),
                   ),
                 );*/
-                //Get.to(VideoCall(channelName: _meetingCode.trim()));
-              },
-              icon: Icon(Icons.video_call),
-              label: Text("start call"),
-              style: OutlinedButton.styleFrom(
-                primary: Colors.indigo,
-                side: BorderSide(color: Colors.indigo),
-                fixedSize: Size(350, 30),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
+                  //Get.to(VideoCall(channelName: _meetingCode.trim()));
+                },
+                icon: Icon(Icons.video_call),
+                label: Text("start call"),
+                style: OutlinedButton.styleFrom(
+                  primary: primary,
+                  side: BorderSide(color: primary),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                ),
               ),
             ),
           ],

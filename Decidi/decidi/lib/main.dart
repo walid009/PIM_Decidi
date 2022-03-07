@@ -4,6 +4,8 @@ import 'package:decidi/screens/course/add_course.dart';
 import 'package:decidi/screens/course/course_list.dart';
 import 'package:decidi/screens/course/meet.dart';
 import 'package:decidi/screens/root_app.dart';
+import 'package:decidi/screens/admin/dashboard_admin.dart';
+import 'package:decidi/screens/first_run/first_run.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'theme/color.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
 
           ///ExplorePage(),
 
-          //  FirstRun(),
+          // FirstRun(),
           ),
     );
   }

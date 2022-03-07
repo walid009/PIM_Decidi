@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:decidi/theme/color.dart';
 
-import '../models/course.dart';
 import 'custom_image.dart';
 
+// ignore: must_be_immutable
 class FeatureItem extends StatelessWidget {
   FeatureItem(
       {Key? key,
