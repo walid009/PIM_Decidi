@@ -1,5 +1,6 @@
 import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/admin/dashboard_admin.dart';
+import 'package:decidi/screens/first_run/first_run.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'theme/color.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 
           ///ExplorePage(),
 
-          //  FirstRun(),
+          // FirstRun(),
           ),
     );
   }
