@@ -1,3 +1,4 @@
+import 'package:decidi/screens/course/meet.dart';
 import 'package:flutter/material.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/utils/data.dart';
@@ -148,6 +149,18 @@ class _AccountPageState extends State<AccountPage> {
                 leadingIcon: "assets/icons/bookmark.svg",
                 bgIconColor: primary,
                 onTap: () {},
+              ),
+              SettingItem(
+                title: "Join Meet",
+                leadingIcon: "assets/icons/play.svg",
+                bgIconColor: primary,
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => Meet(),
+                    ),
+                  );
+                },
               ),
             ]),
           ),
