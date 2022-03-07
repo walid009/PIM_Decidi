@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:decidi/models/course.dart';
 import 'package:decidi/models/proposition.dart';
 import 'package:flutter/material.dart';
@@ -36,13 +37,33 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addCourse(Map<String, dynamic> carBody) async {
-    Map<String, String> headers = {
+  Future<void> addCourse(String text, String capacity, String price,
+      String description, File file) async {
+    //create multipart request for POST or PATCH method
+    var request =
+        http.MultipartRequest("POST", Uri.http(baseUrl, "/createcourse"));
+    //add text fields
+    request.fields["title"] = text;
+    request.fields["capacity"] = capacity;
+    request.fields["price"] = price;
+    request.fields["description"] = description;
+    //create multipart using filepath, string or bytes
+    var pic = await http.MultipartFile.fromPath("image", file.path);
+    //add multipart to request
+    request.files.add(pic);
+    var response = await request.send();
+
+    //Get the response from the server
+    var responseData = await response.stream.toBytes();
+    var responseString = String.fromCharCodes(responseData);
+    print(responseString);
+
+    /*Map<String, String> headers = {
       "Content-Type": "application/json; charset=utf-8"
     };
     await http.post(Uri.http(baseUrl, "/createcourse"),
         //headers: headers,
-        body: carBody);
+        body: carBody);*/
 
     await fetchCourse();
   }

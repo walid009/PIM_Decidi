@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
+import '../../utils/constant.dart';
 import 'add_course.dart';
-import 'course_view.dart';
+import '../../widgets/course_view.dart';
 
 class CourseList extends StatefulWidget {
   const CourseList();
@@ -30,30 +31,32 @@ class _CourseListState extends State<CourseList> {
   Widget build(BuildContext context) {
     final cars = Provider.of<DataProvider>(context).listCourse;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-        ),
-        backgroundColor: primary,
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) => AddCourse(
-                reload: reloadPage,
+        floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.add,
+          ),
+          backgroundColor: primary,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) => AddCourse(
+                  reload: reloadPage,
+                ),
               ),
-            ),
-          );
-        },
-      ),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: ListView.builder(
-        itemCount: cars.length,
-        itemBuilder: (context, index) {
-          print(cars[index].courseId);
-          return CourseView(cars[index].courseId, cars[index].courseImage,
-              cars[index].courseTitle, cars[index].coursePrice + "DT");
-        },
-      ),
-    );
+            );
+          },
+        ),
+        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        body: ListView.builder(
+          itemCount: cars.length,
+          itemBuilder: (context, index) {
+            print(cars[index].courseId);
+            return CourseView(
+                cars[index].courseId,
+                "http://" + baseUrl + "/" + cars[index].courseImage,
+                cars[index].courseTitle,
+                cars[index].coursePrice + "DT");
+          },
+        ));
   }
 }

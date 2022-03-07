@@ -8,7 +8,7 @@ import 'dart:convert';
 import '../../providers/DataProvider.dart';
 import '../../theme/color.dart';
 import '../../utils/constant.dart';
-import 'detail_course_view.dart';
+import '../../widgets/detail_course_view.dart';
 
 class DetailCourse extends StatefulWidget {
   final String idCourse;

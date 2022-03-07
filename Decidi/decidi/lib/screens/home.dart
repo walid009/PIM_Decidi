@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:decidi/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/utils/data.dart';
@@ -171,7 +172,10 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                   id: listcourses[index].courseId,
-                  image: listcourses[index].courseImage,
+                  image: "http://" +
+                      baseUrl +
+                      "/" +
+                      listcourses[index].courseImage,
                   title: listcourses[index].courseTitle,
                   capacity: listcourses[index].courseCapacity,
                   nbParticipant: listcourses[index]
