@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:decidi/screens/SignUpScreen.dart';
+import 'package:decidi/screens/admin/dashboard_admin.dart';
 import 'package:decidi/screens/course/organisateur/NavigationBottom.dart';
 import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/utils/constant.dart';
@@ -349,12 +350,25 @@ class _SignInScreenState extends State<SignInScreen> {
                                             RootApp(),
                                       ),
                                     );
-                                  }
-                                  if (userData["role"] == "coach") {
+                                  } else if (userData["role"] == "admin") {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            DashboardAdmin(),
+                                      ),
+                                    );
+                                  } else if (userData["role"] == "coach") {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute<void>(
                                         builder: (BuildContext context) =>
                                             NavigationBottom(),
+                                      ),
+                                    );
+                                  } else {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute<void>(
+                                        builder: (BuildContext context) =>
+                                            RootApp(),
                                       ),
                                     );
                                   }

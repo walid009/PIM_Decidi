@@ -64,9 +64,9 @@ class _DashboardAdminState extends State<DashboardAdmin> {
               ),
             ),
           ),
-          elevation: 2.0,
+          elevation: 2.0, centerTitle: true,
           title: const Text(
-            "Dashboard",
+            "Admin Dashboard",
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: Colors.white,

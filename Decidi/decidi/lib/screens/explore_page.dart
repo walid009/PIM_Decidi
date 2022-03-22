@@ -2,6 +2,7 @@ import 'package:decidi/models/course.dart';
 import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/course/detail_course.dart';
 import 'package:decidi/theme/color.dart';
+import 'package:decidi/utils/constant.dart';
 import 'package:decidi/utils/data.dart';
 import 'package:decidi/widgets/category_rectangle.dart';
 import 'package:decidi/widgets/custom_textfield.dart';
@@ -128,7 +129,7 @@ class _ExplorePageState extends State<ExplorePage> {
           );
         },
         id: listcourses[index].courseId,
-        image: listcourses[index].courseImage,
+        image: "http://" + baseUrl + "/" + listcourses[index].courseImage,
         title: listcourses[index].courseTitle,
         capacity: listcourses[index].courseCapacity,
         nbParticipant:
