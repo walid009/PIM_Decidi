@@ -18,7 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
-//azfhd
+
   @override
   _AccountPageState createState() => _AccountPageState();
 }
