@@ -4,5 +4,13 @@ class User {
   late String email;
   late String role;
 
-  User(this.id, this.firstName, this.email, this.role);
+  late String lastName;
+
+  late String password;
+  late String bacType;
+  late String generalDegree;
+  late String profession;
+  late String image;
+
+  User(this.id, this.firstName, this.lastName, this.email, this.role);
 }

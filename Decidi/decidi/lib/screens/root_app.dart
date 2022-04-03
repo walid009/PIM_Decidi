@@ -1,3 +1,5 @@
+import 'package:decidi/providers/DataProvider.dart';
+import 'package:decidi/screens/course/meet.dart';
 import 'package:decidi/screens/explore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:decidi/screens/account.dart';
@@ -5,6 +7,7 @@ import 'package:decidi/screens/chat.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:decidi/widgets/bottombar_item.dart';
+import 'package:provider/provider.dart';
 import 'course/course_list.dart';
 import 'home.dart';
 
@@ -17,6 +20,7 @@ class RootApp extends StatefulWidget {
 
 class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   int activeTab = 0;
+
   List barItems = [
     {
       "icon": "assets/icons/home.svg",
@@ -31,7 +35,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     {
       "icon": "assets/icons/play.svg",
       "active_icon": "assets/icons/play.svg",
-      "page": CourseList(),
+      "page": Meet(),
     },
     {
       "icon": "assets/icons/chat.svg",
@@ -58,6 +62,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Provider.of<DataProvider>(context, listen: false).fetchCourse();
     _controller.forward();
   }
 

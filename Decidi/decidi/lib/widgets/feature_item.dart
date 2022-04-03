@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:decidi/theme/color.dart';
 
-import '../models/course.dart';
 import 'custom_image.dart';
 
+// ignore: must_be_immutable
 class FeatureItem extends StatelessWidget {
   FeatureItem(
       {Key? key,
@@ -111,7 +111,7 @@ class FeatureItem extends StatelessWidget {
                         SizedBox(
                           width: 12,
                         ),
-                        getAttribute(Icons.incomplete_circle, labelColor,
+                        getAttribute(Icons.circle, labelColor,
                             "participant:" + nbParticipant),
                         /*SizedBox(
                           width: 12,

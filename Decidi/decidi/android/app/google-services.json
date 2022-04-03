@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "935990641581",
+    "project_id": "backpim",
+    "storage_bucket": "backpim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935990641581:android:19f54392afd0d7d9fad724",
+        "android_client_info": {
+          "package_name": "com.sangvaleap.online_course"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935990641581-gsh9914mel0ih0l4ueh7apqoov1saql6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHOYrnF_xrHLjF1lrs8J24vZP_7Bh89Dc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935990641581-gsh9914mel0ih0l4ueh7apqoov1saql6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

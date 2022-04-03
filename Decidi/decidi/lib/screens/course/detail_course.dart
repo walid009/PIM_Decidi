@@ -8,7 +8,7 @@ import 'dart:convert';
 import '../../providers/DataProvider.dart';
 import '../../theme/color.dart';
 import '../../utils/constant.dart';
-import 'detail_course_view.dart';
+import '../../widgets/detail_course_view.dart';
 
 class DetailCourse extends StatefulWidget {
   final String idCourse;
@@ -58,56 +58,15 @@ class _DetailCourseState extends State<DetailCourse> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
-              appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  title: Center(child: const Text("Details"))),
-              body: DetailCourseView(choix.id, choix.title, choix.prix,
-                  choix.image, choix.description),
-              floatingActionButton: FloatingActionButton.extended(
-                icon: Icon(Icons.shopping_cart),
-                label: Text("Participate"),
-                backgroundColor: primary,
-                onPressed: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  http.Response response = await http.get(Uri.http(
-                      baseUrl,
-                      "/checkuserparticipateorno/" +
-                          choix.id +
-                          "/" +
-                          prefs.getString("userEmail").toString()));
-                  Map<String, dynamic> carsFromServer =
-                      json.decode(response.body);
-                  bool test = carsFromServer["exist"];
-                  print(test);
-
-                  if (test == true) {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text("Error"),
-                            content: Text(
-                                "You'are already participate to this course"),
-                          );
-                        });
-                  } else {
-                    final request = BraintreePayPalRequest(
-                      amount: choix.prix,
-                    );
-                    final result = await Braintree.requestPaypalNonce(
-                      tokenizationKey,
-                      request,
-                    );
-                    if (result != null) {
-                      await Provider.of<DataProvider>(context, listen: false)
-                          .participateToCourse(choix.id);
-                      showNonce(result);
-                    }
-                  }
-                },
-              ));
+            bottomNavigationBar: getBottomBar(),
+            appBar: AppBar(
+                elevation: 2.0,
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                title: const Text("Details")),
+            body: DetailCourseView(choix.id, choix.title, choix.prix,
+                choix.image, choix.description),
+          );
         } else {
           return const Center(
             child: CircularProgressIndicator(),
@@ -131,6 +90,124 @@ class _DetailCourseState extends State<DetailCourse> {
             Text('Type label: ${nonce.typeLabel}'),
             SizedBox(height: 16),
             Text('Description: ${nonce.description}'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget getBottomBar() {
+    return Container(
+      height: 90,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: bottomBarColor,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+          boxShadow: [
+            BoxShadow(
+                color: shadowColor.withOpacity(0.1),
+                blurRadius: 1,
+                spreadRadius: 1,
+                offset: Offset(1, 1))
+          ]),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          right: 10,
+          left: 10,
+          bottom: 15,
+          top: 10,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 4,
+              child: SizedBox(
+                height: 45,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Price ",
+                      style: TextStyle(
+                        color: labelColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),
+                    ),
+                    Text(
+                      choix.prix + " DT",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 8,
+              child: SizedBox(
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    http.Response response = await http.get(Uri.http(
+                        baseUrl,
+                        "/checkuserparticipateorno/" +
+                            choix.id +
+                            "/" +
+                            prefs.getString("userEmail").toString()));
+                    Map<String, dynamic> carsFromServer =
+                        json.decode(response.body);
+                    bool test = carsFromServer["exist"];
+                    print(test);
+
+                    if (test == true) {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Error"),
+                              content: Text(
+                                  "You'are already participate to this course"),
+                            );
+                          });
+                    } else {
+                      final request = BraintreePayPalRequest(
+                        amount: choix.prix,
+                      );
+                      final result = await Braintree.requestPaypalNonce(
+                        tokenizationKey,
+                        request,
+                      );
+                      if (result != null) {
+                        await Provider.of<DataProvider>(context, listen: false)
+                            .participateToCourse(choix.id);
+                        showNonce(result);
+                      }
+                    }
+                  },
+                  child: Text(
+                    "Participate",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    primary: primary,
+                    shadowColor: shadowColor,
+                    elevation: 1.0,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

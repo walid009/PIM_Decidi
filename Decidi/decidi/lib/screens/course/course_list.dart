@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
+import '../../utils/constant.dart';
 import 'add_course.dart';
-import 'course_view.dart';
+import '../../widgets/course_view.dart';
 
 class CourseList extends StatefulWidget {
   const CourseList();
@@ -45,13 +46,16 @@ class _CourseListState extends State<CourseList> {
             );
           },
         ),
-        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: ListView.builder(
           itemCount: cars.length,
           itemBuilder: (context, index) {
             print(cars[index].courseId);
-            return CourseView(cars[index].courseId, cars[index].courseImage,
-                cars[index].courseTitle, cars[index].coursePrice + "DT");
+            return CourseView(
+                cars[index].courseId,
+                "http://" + baseUrl + "/" + cars[index].courseImage,
+                cars[index].courseTitle,
+                cars[index].coursePrice + "DT");
           },
         ));
   }
