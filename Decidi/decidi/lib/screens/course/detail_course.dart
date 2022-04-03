@@ -36,6 +36,7 @@ class _DetailCourseState extends State<DetailCourse> {
     choix = Course2(
       choixpaysFromServer["_id"],
       choixpaysFromServer["title"],
+      choixpaysFromServer["type"],
       choixpaysFromServer["price"],
       choixpaysFromServer["image"],
       choixpaysFromServer["description"],
@@ -64,8 +65,8 @@ class _DetailCourseState extends State<DetailCourse> {
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
                 title: const Text("Details")),
-            body: DetailCourseView(choix.id, choix.title, choix.prix,
-                choix.image, choix.description),
+            body: DetailCourseView(choix.id, choix.title, choix.type,
+                choix.prix, choix.image, choix.description),
           );
         } else {
           return const Center(
@@ -218,8 +219,10 @@ class _DetailCourseState extends State<DetailCourse> {
 class Course2 {
   late String id;
   late String title;
+  late String type;
   late String prix;
   late String image;
   late String description;
-  Course2(this.id, this.title, this.prix, this.image, this.description);
+  Course2(
+      this.id, this.title, this.type, this.prix, this.image, this.description);
 }

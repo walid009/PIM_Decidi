@@ -20,6 +20,7 @@ class AddCourse extends StatefulWidget {
 
 class _AddCourseState extends State<AddCourse> {
   late String title;
+  late String type;
   late int capacity;
   late int price;
   late String description;
@@ -123,6 +124,36 @@ class _AddCourseState extends State<AddCourse> {
                 validator: (value) {
                   if (value!.isEmpty || value.length < 2) {
                     return "title required minimum 3 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Type",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  type = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "type required minimum 3 caractere";
                   } else {
                     return null;
                   }
@@ -293,6 +324,7 @@ class _AddCourseState extends State<AddCourse> {
 
                     Map<String, dynamic> carBody = {
                       'title': title,
+                      'type': type,
                       'capacity': capacity.toString(),
                       'price': price.toString(),
                       'description': description
