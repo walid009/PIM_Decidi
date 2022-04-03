@@ -537,6 +537,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       headers: headers,
                                       body: json.encode(userData))
                                   .then((http.Response response) async {
+                                print(response.body);
                                 if (response.statusCode == 200) {
                                   Map<String, dynamic> userData =
                                       json.decode(response.body);

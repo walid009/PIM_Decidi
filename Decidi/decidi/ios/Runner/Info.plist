@@ -36,9 +36,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow acces to you&apos;re camera</string>
+	<string>Allow acces to you're camera</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow access to you&apos;re microphone</string>
+	<string>Allow access to you're microphone</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>

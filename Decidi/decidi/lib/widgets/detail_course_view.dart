@@ -76,8 +76,7 @@ class DetailCourseView extends StatelessWidget {
                 SizedBox(
                   width: 12,
                 ),
-                getAttribute(
-                    Icons.incomplete_circle, labelColor, "participant:" + "1"),
+                getAttribute(Icons.circle, labelColor, "participant:" + "1"),
               ],
             ),
             SizedBox(

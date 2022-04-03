@@ -1,7 +1,11 @@
+import 'package:decidi/models/group.dart';
+import 'package:decidi/providers/DataProvider.dart';
+import 'package:decidi/widgets/group_item.dart';
 import 'package:flutter/material.dart';
 import 'package:decidi/utils/data.dart';
 import 'package:decidi/widgets/chat_item.dart';
 import 'package:decidi/widgets/custom_textfield.dart';
+import 'package:provider/provider.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -12,16 +16,24 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   @override
-  Widget build(BuildContext context) {
-    return buildBody();
+  void initState() {
+    super.initState();
+
+    Provider.of<DataProvider>(context, listen: false).fetchGroups();
   }
 
-  buildBody() {
+  @override
+  Widget build(BuildContext context) {
+    final groups = Provider.of<DataProvider>(context).listGroup;
+    return buildBody(groups);
+  }
+
+  buildBody(List<Group> groups) {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 15, right: 15),
+      padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(children: [
         getHeader(),
-        getChats(),
+        getChats(groups),
       ]),
     );
   }
@@ -38,7 +50,7 @@ class _ChatPageState extends State<ChatPage> {
                   child: Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Chat",
+                        "Groups",
                         style: TextStyle(
                             fontSize: 28,
                             color: Colors.black87,
@@ -56,15 +68,17 @@ class _ChatPageState extends State<ChatPage> {
         ));
   }
 
-  getChats() {
+  getChats(List<Group> groups) {
     return ListView(
-        padding: EdgeInsets.only(top: 10),
+        padding: EdgeInsets.only(
+          top: 10,
+        ),
         shrinkWrap: true,
         children: List.generate(
-            chats.length,
-            (index) => ChatItem(
-                  chats[index],
-                  onTap: () {},
+            groups.length,
+            (index) => GroupItem(
+                  groups[index].groupId,
+                  groups[index].groupName,
                 )));
   }
 }

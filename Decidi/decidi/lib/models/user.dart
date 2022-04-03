@@ -12,5 +12,5 @@ class User {
   late String profession;
   late String image;
 
-  User(this.id, this.firstName, this.email, this.role);
+  User(this.id, this.firstName, this.lastName, this.email, this.role);
 }

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:decidi/models/user.dart';
+import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/SignUpScreen.dart';
 import 'package:decidi/screens/admin/dashboard_admin.dart';
 import 'package:decidi/screens/course/organisateur/NavigationBottom.dart';
@@ -9,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'course/organisateur/NavigationBottom.dart';
@@ -17,6 +20,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'first_run/first_run.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:decidi/models/user.dart' as AppUser;
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -336,6 +340,16 @@ class _SignInScreenState extends State<SignInScreen> {
                                 if (response.statusCode == 200) {
                                   Map<String, dynamic> userData =
                                       json.decode(response.body);
+
+                                  AppUser.User user = AppUser.User(
+                                      userData["id"],
+                                      "firstName",
+                                      "lastName",
+                                      userData["email"],
+                                      userData["role"]);
+                                  Provider.of<DataProvider>(context,
+                                          listen: false)
+                                      .setUser(user);
 
                                   // SharedPreferences
                                   SharedPreferences prefs =

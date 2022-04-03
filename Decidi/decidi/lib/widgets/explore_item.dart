@@ -111,7 +111,7 @@ class ExploreItem extends StatelessWidget {
                         SizedBox(
                           width: 12,
                         ),
-                        getAttribute(Icons.incomplete_circle, labelColor,
+                        getAttribute(Icons.circle, labelColor,
                             "participant:" + nbParticipant),
                         SizedBox(
                           width: 0,
