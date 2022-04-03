@@ -191,6 +191,21 @@ class _AccountPageState extends State<AccountPage> {
                         bgIconColor: primary,
                         onTap: () {},
                       ),
+<<<<<<< HEAD
+=======
+                      SettingItem(
+                        title: "Join Meet",
+                        leadingIcon: "assets/icons/play.svg",
+                        bgIconColor: primary,
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => Meet(),
+                            ),
+                          );
+                        },
+                      ),
+>>>>>>> b950f6cf10017b4db5bdd0a574b051601161fa9d
                     ]),
                   ),
                   SizedBox(

@@ -20,7 +20,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'first_run/first_run.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+<<<<<<< HEAD
 import 'package:decidi/models/user.dart' as AppUser;
+=======
+>>>>>>> b950f6cf10017b4db5bdd0a574b051601161fa9d
 
 class SignInScreen extends StatefulWidget {
   @override

@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:decidi/models/course.dart';
+<<<<<<< HEAD
 import 'package:decidi/models/group.dart';
 import 'package:decidi/models/message.dart';
 import 'package:decidi/models/post.dart';
 import 'package:decidi/models/proposition.dart';
 import 'package:decidi/models/user.dart';
+=======
+import 'package:decidi/models/proposition.dart';
+>>>>>>> b950f6cf10017b4db5bdd0a574b051601161fa9d
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,10 +19,13 @@ import '../utils/constant.dart';
 class DataProvider with ChangeNotifier {
   late List<Course> listCourse = [];
   late List<Proposition> listpropositions = [];
+<<<<<<< HEAD
   late List<Group> listGroup = [];
   late List<Post> listPost = [];
   late List<Message> listMsg = [];
   late User user = User("id", "firstName", "lastName", "email", "role");
+=======
+>>>>>>> b950f6cf10017b4db5bdd0a574b051601161fa9d
 
   late bool exist = true;
 
@@ -64,6 +71,10 @@ class DataProvider with ChangeNotifier {
     //Get the response from the server
     var responseData = await response.stream.toBytes();
     var responseString = String.fromCharCodes(responseData);
+<<<<<<< HEAD
+=======
+    print(responseString);
+>>>>>>> b950f6cf10017b4db5bdd0a574b051601161fa9d
 
     /*Map<String, String> headers = {
       "Content-Type": "application/json; charset=utf-8"
@@ -144,6 +155,7 @@ class DataProvider with ChangeNotifier {
   //-------------------------------------------------------------------
   //-------------------------------------------------------------------
   //-------------------------------------------------------------------
+<<<<<<< HEAD
   Future<void> fetchGroups() async {
     List<Group> tempgroups = [];
     http.Response response = await http.get(Uri.http(baseUrl, "/allgroups"));
@@ -207,4 +219,6 @@ class DataProvider with ChangeNotifier {
 
     await fetchMessages();
   }
+=======
+>>>>>>> b950f6cf10017b4db5bdd0a574b051601161fa9d
 }

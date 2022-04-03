@@ -35,7 +35,11 @@ class _ExplorePageState extends State<ExplorePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               getHeader(),
+<<<<<<< HEAD
               //getBody(),
+=======
+              getBody(),
+>>>>>>> b950f6cf10017b4db5bdd0a574b051601161fa9d
               ...getFeature(listcourses),
             ]),
       ),
