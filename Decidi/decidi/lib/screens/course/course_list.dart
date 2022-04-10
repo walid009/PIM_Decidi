@@ -46,7 +46,7 @@ class _CourseListState extends State<CourseList> {
             );
           },
         ),
-        //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: ListView.builder(
           itemCount: cars.length,
           itemBuilder: (context, index) {

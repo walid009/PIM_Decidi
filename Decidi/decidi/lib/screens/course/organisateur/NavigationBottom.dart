@@ -1,5 +1,6 @@
 import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/screens/course/course_list.dart';
+import 'package:decidi/screens/group/group_list.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -94,7 +95,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
         //body: interfaces[current_index],
         body: TabBarView(children: [
           CourseList(),
-          Container(),
+          GroupList(),
         ]),
         // bottomNavigationBar: BottomNavigationBar(
         //     items: const [

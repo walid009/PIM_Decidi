@@ -6,12 +6,13 @@ import '../utils/constant.dart';
 class DetailCourseView extends StatelessWidget {
   late String id;
   late String title;
+  late String type;
   late String prix;
   late String image;
   late String description;
 
   DetailCourseView(
-      this.id, this.title, this.prix, this.image, this.description);
+      this.id, this.title, this.type, this.prix, this.image, this.description);
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +58,10 @@ class DetailCourseView extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
+            getAttribute(Icons.zoom_in, labelColor, type),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: [
                 getAttribute(Icons.schedule_rounded, labelColor, "12 hours"),
@@ -76,8 +81,7 @@ class DetailCourseView extends StatelessWidget {
                 SizedBox(
                   width: 12,
                 ),
-                getAttribute(
-                    Icons.incomplete_circle, labelColor, "participant:" + "1"),
+                getAttribute(Icons.circle, labelColor, "participant:" + "1"),
               ],
             ),
             SizedBox(
