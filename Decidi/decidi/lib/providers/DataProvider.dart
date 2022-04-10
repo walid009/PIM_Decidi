@@ -131,12 +131,19 @@ class DataProvider with ChangeNotifier {
       tempproposition.add(
         Proposition(
           PropositionsFromServer[i]["_id"],
-          PropositionsFromServer[i]["academicBackground"],
-          PropositionsFromServer[i]["universityName"],
-          PropositionsFromServer[i]["description"],
+          PropositionsFromServer[i]["Bac"],
+          PropositionsFromServer[i]["Code"],
+          PropositionsFromServer[i]["Filiere"],
+          PropositionsFromServer[i]["Universite"],
+          PropositionsFromServer[i]["Etablissement"],
+          PropositionsFromServer[i]["Gouvernorat"],
+          PropositionsFromServer[i]["Criteres"],
+          PropositionsFromServer[i]["Duree"],
+          PropositionsFromServer[i]["Score"],
         ),
       );
     }
+
     listpropositions = tempproposition;
     notifyListeners();
   }

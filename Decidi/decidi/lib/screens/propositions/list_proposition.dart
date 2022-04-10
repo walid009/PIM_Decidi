@@ -49,9 +49,9 @@ class _ListPropositionState extends State<ListProposition> {
         itemBuilder: (context, index) {
           return PropositionItem(
             propositions[index].propositionId,
-            propositions[index].propositionAcademicBackground,
-            propositions[index].propositionUniversityName,
-            propositions[index].propositionDescription,
+            propositions[index].Etablissement,
+            propositions[index].Universite,
+            propositions[index].Filiere,
           );
         },
       ),
