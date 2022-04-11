@@ -39,23 +39,12 @@ class _AddCertifState extends State<AddCertif> {
     return Scaffold(
       bottomNavigationBar: getBottomBar(),
       appBar: AppBar(
-        actions: <Widget>[
-          /*IconButton(
-            onPressed: () {
-              _formkey.currentState!.reset();
-            },
-            icon: Icon(Icons.refresh_outlined),
-            color: Colors.black,
-          )*/
-        ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
         title: const Text(
           "Add New Certificat",
           style: TextStyle(color: Colors.black),
         ),
+        foregroundColor: Colors.black,
+        centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 2.0,
         shadowColor: shadowColor,

@@ -38,6 +38,8 @@ class _PortfolioListState extends State<PortfolioList> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: appBgColor,
+          foregroundColor: Colors.black,
+          centerTitle: true,
           title: Text(
             "Certificat",
             style: TextStyle(

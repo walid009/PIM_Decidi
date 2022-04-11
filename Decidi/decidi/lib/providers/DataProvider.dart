@@ -246,47 +246,51 @@ class DataProvider with ChangeNotifier {
     await fetchGroups();
   }
 
-  Future<void> fetchPosts() async {
+  Future<void> fetchPosts(String idGroup) async {
     List<Post> temp = [];
     http.Response response = await http.get(Uri.http(baseUrl, "/allposts"));
     List<dynamic> dataFromServer = json.decode(response.body);
     for (int i = 0; i < dataFromServer.length; i++) {
-      temp.add(Post(
-        dataFromServer[i]["_id"],
-        dataFromServer[i]["idCreater"],
-        dataFromServer[i]["description"],
-        dataFromServer[i]["like"],
-      ));
+      if (idGroup == dataFromServer[i]["idGroup"])
+        temp.add(Post(
+          dataFromServer[i]["_id"],
+          dataFromServer[i]["idCreater"],
+          dataFromServer[i]["description"],
+          dataFromServer[i]["like"],
+          dataFromServer[i]["idGroup"],
+        ));
     }
     listPost = temp;
     notifyListeners();
   }
 
-  Future<void> addPost(Map<String, dynamic> postBody) async {
+  Future<void> addPost(Map<String, dynamic> postBody, String idGroup) async {
     await http.post(Uri.http(baseUrl, "/createpost"), body: postBody);
 
-    await fetchPosts();
+    await fetchPosts(idGroup);
   }
 
-  Future<void> fetchMessages() async {
+  Future<void> fetchMessages(String idGroup) async {
     List<Message> temp = [];
     http.Response response = await http.get(Uri.http(baseUrl, "/allmessages"));
     List<dynamic> dataFromServer = json.decode(response.body);
     for (int i = 0; i < dataFromServer.length; i++) {
       print(dataFromServer[i]);
-      temp.add(Message(
-        dataFromServer[i]["_id"],
-        dataFromServer[i]["idSender"],
-        dataFromServer[i]["description"],
-      ));
+      if (idGroup == dataFromServer[i]["idGroup"])
+        temp.add(Message(
+          dataFromServer[i]["_id"],
+          dataFromServer[i]["idSender"],
+          dataFromServer[i]["description"],
+          dataFromServer[i]["idGroup"],
+        ));
     }
     listMsg = temp;
     notifyListeners();
   }
 
-  Future<void> addMsg(Map<String, dynamic> postBody) async {
+  Future<void> addMsg(Map<String, dynamic> postBody, String idGroup) async {
     await http.post(Uri.http(baseUrl, "/createmessage"), body: postBody);
 
-    await fetchMessages();
+    await fetchMessages(idGroup);
   }
 }

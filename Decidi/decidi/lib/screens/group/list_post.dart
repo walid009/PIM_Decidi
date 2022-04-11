@@ -21,7 +21,8 @@ class _PostListState extends State<PostList> {
   void initState() {
     super.initState();
 
-    Provider.of<DataProvider>(context, listen: false).fetchPosts();
+    Provider.of<DataProvider>(context, listen: false)
+        .fetchPosts(widget.idGroup);
   }
 
   @override
@@ -46,7 +47,8 @@ class _PostListState extends State<PostList> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute<void>(
-                      builder: (BuildContext context) => MessageList(),
+                      builder: (BuildContext context) =>
+                          MessageList(widget.idGroup),
                     ),
                   );
                 },
