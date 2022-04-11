@@ -346,7 +346,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                       "firstName",
                                       "lastName",
                                       userData["email"],
-                                      userData["role"]);
+                                      userData["role"],
+                                      userData["bacType"]);
                                   Provider.of<DataProvider>(context,
                                           listen: false)
                                       .setUser(user);

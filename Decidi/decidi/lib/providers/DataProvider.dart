@@ -17,10 +17,11 @@ class DataProvider with ChangeNotifier {
   late List<Course> listCourse = [];
   late List<ImagePortfolio> listImages = [];
   late List<Proposition> listpropositions = [];
+  late List<Proposition> listpropositionsBacType = [];
   late List<Group> listGroup = [];
   late List<Post> listPost = [];
   late List<Message> listMsg = [];
-  late User user = User("id", "firstName", "lastName", "email", "role");
+  late User user = User("id", "firstName", "lastName", "email", "role", "type");
 
   late bool exist = true;
 
@@ -190,6 +191,35 @@ class DataProvider with ChangeNotifier {
     }
 
     listpropositions = tempproposition;
+    notifyListeners();
+  }
+
+  Future<void> fetchPropositionsByBac() async {
+    List<Proposition> tempproposition = [];
+    http.Response response =
+        await http.get(Uri.http(baseUrl, "/allproposition"));
+
+    List<dynamic> PropositionsFromServer = json.decode(response.body);
+
+    for (int i = 0; i < PropositionsFromServer.length; i++) {
+      if (PropositionsFromServer[i]["Bac"] == user.bacType)
+        tempproposition.add(
+          Proposition(
+            PropositionsFromServer[i]["_id"],
+            PropositionsFromServer[i]["Bac"],
+            PropositionsFromServer[i]["Code"],
+            PropositionsFromServer[i]["Filiere"],
+            PropositionsFromServer[i]["Universite"],
+            PropositionsFromServer[i]["Etablissement"],
+            PropositionsFromServer[i]["Gouvernorat"],
+            PropositionsFromServer[i]["Criteres"],
+            PropositionsFromServer[i]["Duree"],
+            PropositionsFromServer[i]["Score"],
+          ),
+        );
+    }
+
+    listpropositionsBacType = tempproposition;
     notifyListeners();
   }
 

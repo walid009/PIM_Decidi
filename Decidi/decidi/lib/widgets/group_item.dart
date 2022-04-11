@@ -21,7 +21,7 @@ class GroupItem extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute<void>(
-                  builder: (BuildContext context) => PostList(name),
+                  builder: (BuildContext context) => PostList(name, groupId),
                 ),
               );
             },
