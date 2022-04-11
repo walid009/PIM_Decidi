@@ -135,11 +135,14 @@ class _AddPostState extends State<AddPost> {
                       'idCreater': userid,
                       'like': "0",
                       'description': description,
-                      '': widget.idGroup,
+                      'idGroup': widget.idGroup,
                     };
 
                     await Provider.of<DataProvider>(context, listen: false)
-                        .addPost(propositionBody);
+                        .addPost(
+                      propositionBody,
+                      widget.idGroup,
+                    );
 
                     Navigator.of(context).pop();
                   }

@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MessageList extends StatefulWidget {
+  final String idGroup;
+  MessageList(this.idGroup);
   @override
   State<MessageList> createState() => _MessageListState();
 }
@@ -15,7 +17,8 @@ class _MessageListState extends State<MessageList> {
   void initState() {
     super.initState();
 
-    Provider.of<DataProvider>(context, listen: false).fetchMessages();
+    Provider.of<DataProvider>(context, listen: false)
+        .fetchMessages(widget.idGroup);
     getuserid();
   }
 
@@ -23,6 +26,8 @@ class _MessageListState extends State<MessageList> {
   late String description;
 
   late String userid;
+
+  TextEditingController msgController = TextEditingController();
 
   void getuserid() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -63,9 +68,10 @@ class _MessageListState extends State<MessageList> {
                     child: Container(
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.only(bottom: 5, top: 5),
-                      width: 250,
+                      width: 220,
                       child: TextFormField(
                         cursorColor: Colors.black,
+                        controller: msgController,
                         decoration: const InputDecoration(
                           fillColor: Colors.black,
                           focusedBorder: OutlineInputBorder(
@@ -103,10 +109,14 @@ class _MessageListState extends State<MessageList> {
                         Map<String, dynamic> msgBody = {
                           'idSender': userid,
                           'description': description,
+                          'idGroup': widget.idGroup
                         };
 
                         await Provider.of<DataProvider>(context, listen: false)
-                            .addMsg(msgBody);
+                            .addMsg(msgBody, widget.idGroup);
+                        setState(() {
+                          msgController.text = "";
+                        });
                       }
                     },
                     child: Text(
