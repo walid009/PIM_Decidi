@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:decidi/models/course.dart';
 import 'package:decidi/models/group.dart';
+import 'package:decidi/models/image_portfolio.dart';
 import 'package:decidi/models/message.dart';
 import 'package:decidi/models/post.dart';
 import 'package:decidi/models/proposition.dart';
@@ -14,16 +15,61 @@ import '../utils/constant.dart';
 
 class DataProvider with ChangeNotifier {
   late List<Course> listCourse = [];
+  late List<ImagePortfolio> listImages = [];
   late List<Proposition> listpropositions = [];
+  late List<Proposition> listpropositionsBacType = [];
   late List<Group> listGroup = [];
   late List<Post> listPost = [];
   late List<Message> listMsg = [];
-  late User user = User("id", "firstName", "lastName", "email", "role");
+  late User user = User("id", "firstName", "lastName", "email", "role", "type");
 
   late bool exist = true;
 
   void setUser(User u) {
     user = u;
+  }
+
+  Future<void> fetchImagePortfolio(String idUser) async {
+    List<ImagePortfolio> tempcars = [];
+    http.Response response =
+        await http.get(Uri.http(baseUrl, "/getAllMyCv/" + idUser));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      tempcars.add(ImagePortfolio(
+        carsFromServer[i]["_id"],
+        carsFromServer[i]["urlimage"],
+        carsFromServer[i]["iduser"],
+        carsFromServer[i]["title"],
+      ));
+    }
+    listImages = tempcars;
+    notifyListeners();
+  }
+
+  Future<void> addCertificat(String text, String userId, File file) async {
+    //create multipart request for POST or PATCH method
+    var request =
+        http.MultipartRequest("POST", Uri.http(baseUrl, "/uploadcv/" + userId));
+    //add text fields
+    request.fields["title"] = text;
+    //create multipart using filepath, string or bytes
+    var pic = await http.MultipartFile.fromPath("image", file.path);
+    //add multipart to request
+    request.files.add(pic);
+    var response = await request.send();
+
+    //Get the response from the server
+    var responseData = await response.stream.toBytes();
+    var responseString = String.fromCharCodes(responseData);
+
+    /*Map<String, String> headers = {
+      "Content-Type": "application/json; charset=utf-8"
+    };
+    await http.post(Uri.http(baseUrl, "/createcourse"),
+        //headers: headers,
+        body: carBody);*/
+
+    await fetchImagePortfolio(userId);
   }
 
   Future<void> fetchCourse() async {
@@ -131,13 +177,49 @@ class DataProvider with ChangeNotifier {
       tempproposition.add(
         Proposition(
           PropositionsFromServer[i]["_id"],
-          PropositionsFromServer[i]["academicBackground"],
-          PropositionsFromServer[i]["universityName"],
-          PropositionsFromServer[i]["description"],
+          PropositionsFromServer[i]["Bac"],
+          PropositionsFromServer[i]["Code"],
+          PropositionsFromServer[i]["Filiere"],
+          PropositionsFromServer[i]["Universite"],
+          PropositionsFromServer[i]["Etablissement"],
+          PropositionsFromServer[i]["Gouvernorat"],
+          PropositionsFromServer[i]["Criteres"],
+          PropositionsFromServer[i]["Duree"],
+          PropositionsFromServer[i]["Score"],
         ),
       );
     }
+
     listpropositions = tempproposition;
+    notifyListeners();
+  }
+
+  Future<void> fetchPropositionsByBac() async {
+    List<Proposition> tempproposition = [];
+    http.Response response =
+        await http.get(Uri.http(baseUrl, "/allproposition"));
+
+    List<dynamic> PropositionsFromServer = json.decode(response.body);
+
+    for (int i = 0; i < PropositionsFromServer.length; i++) {
+      if (PropositionsFromServer[i]["Bac"] == user.bacType)
+        tempproposition.add(
+          Proposition(
+            PropositionsFromServer[i]["_id"],
+            PropositionsFromServer[i]["Bac"],
+            PropositionsFromServer[i]["Code"],
+            PropositionsFromServer[i]["Filiere"],
+            PropositionsFromServer[i]["Universite"],
+            PropositionsFromServer[i]["Etablissement"],
+            PropositionsFromServer[i]["Gouvernorat"],
+            PropositionsFromServer[i]["Criteres"],
+            PropositionsFromServer[i]["Duree"],
+            PropositionsFromServer[i]["Score"],
+          ),
+        );
+    }
+
+    listpropositionsBacType = tempproposition;
     notifyListeners();
   }
 

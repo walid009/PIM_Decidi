@@ -20,6 +20,7 @@ class AddCourse extends StatefulWidget {
 
 class _AddCourseState extends State<AddCourse> {
   late String title;
+  late String type;
   late int capacity;
   late int price;
   late String description;
@@ -71,31 +72,36 @@ class _AddCourseState extends State<AddCourse> {
           margin: EdgeInsets.only(bottom: 5, top: 5),
           child: ListView(
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                width: MediaQuery.of(context).size.width * 0.6,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: shadowColor.withOpacity(0.1),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: Offset(0, 1), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child: image != null
-                      ? Image.file(
-                          image!,
-                          fit: BoxFit.fill,
-                        )
-                      : Image.asset(
-                          "assets/images/node.png",
-                          fit: BoxFit.fill,
-                        ),
+              InkWell(
+                onTap: () {
+                  pickImage();
+                },
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: shadowColor.withOpacity(0.1),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: Offset(0, 1), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: image != null
+                        ? Image.file(
+                            image!,
+                            fit: BoxFit.fill,
+                          )
+                        : Image.asset(
+                            "assets/images/node.png",
+                            fit: BoxFit.fill,
+                          ),
+                  ),
                 ),
               ),
               SizedBox(
@@ -123,6 +129,36 @@ class _AddCourseState extends State<AddCourse> {
                 validator: (value) {
                   if (value!.isEmpty || value.length < 2) {
                     return "title required minimum 3 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Type",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  type = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "type required minimum 3 caractere";
                   } else {
                     return null;
                   }
@@ -225,30 +261,6 @@ class _AddCourseState extends State<AddCourse> {
                   }
                 },
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 30,
-                width: MediaQuery.of(context).size.height * 0.4,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    pickImage();
-                  },
-                  child: Text(
-                    "Upload an image",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w500),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    primary: primary,
-                    shadowColor: shadowColor,
-                    elevation: 1.0,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -293,6 +305,7 @@ class _AddCourseState extends State<AddCourse> {
 
                     Map<String, dynamic> carBody = {
                       'title': title,
+                      'type': type,
                       'capacity': capacity.toString(),
                       'price': price.toString(),
                       'description': description

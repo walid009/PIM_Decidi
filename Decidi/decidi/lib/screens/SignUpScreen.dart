@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, body_might_complete_normally_nullable
 
 import 'dart:convert';
+import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/screens/first_run/first_run.dart';
 import 'package:decidi/screens/root_app.dart';
@@ -9,10 +10,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:decidi/models/user.dart' as AppUser;
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -523,7 +526,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 "firstName": "Achref",
                                 "email": _email,
                                 "password": _password,
-                                // "role": "client"
+                                "role": "client"
                               };
                               print(userData);
 
@@ -542,6 +545,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   Map<String, dynamic> userData =
                                       json.decode(response.body);
 
+                                  AppUser.User user = AppUser.User(
+                                      userData["_id"],
+                                      "firstName",
+                                      "lastName",
+                                      userData["email"],
+                                      userData["role"],
+                                      "");
+                                  Provider.of<DataProvider>(context,
+                                          listen: false)
+                                      .setUser(user);
+
                                   // SharedPreferences
                                   SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
@@ -550,7 +564,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute<void>(
                                       builder: (BuildContext context) =>
-                                          RootApp(),
+                                          FirstRun(),
                                     ),
                                   );
                                 } else if (response.statusCode == 404) {

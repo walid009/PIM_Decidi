@@ -16,6 +16,8 @@ import 'SignInScreen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'client/portfolio.dart';
+
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -186,10 +188,20 @@ class _AccountPageState extends State<AccountPage> {
                         ),
                       ),
                       SettingItem(
-                        title: "Bookmark",
+                        title: "Certificat",
                         leadingIcon: "assets/icons/bookmark.svg",
                         bgIconColor: primary,
-                        onTap: () {},
+                        onTap: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => PortfolioList(
+                                  prefs.getString("userId").toString()),
+                            ),
+                          );
+                        },
                       ),
                     ]),
                   ),
