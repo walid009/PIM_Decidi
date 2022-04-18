@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:decidi/models/user.dart';
+import 'package:decidi/screens/client/my_courses.dart';
 import 'package:decidi/screens/setting.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:decidi/screens/course/meet.dart';
@@ -199,6 +200,22 @@ class _AccountPageState extends State<AccountPage> {
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) => PortfolioList(
                                   prefs.getString("userId").toString()),
+                            ),
+                          );
+                        },
+                      ),
+                      SettingItem(
+                        title: "My Course",
+                        leadingIcon: "assets/icons/bookmark.svg",
+                        bgIconColor: primary,
+                        onTap: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => MyCourses(
+                                  prefs.getString("userEmail").toString()),
                             ),
                           );
                         },
