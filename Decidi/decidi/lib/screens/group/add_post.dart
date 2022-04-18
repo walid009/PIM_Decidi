@@ -5,8 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddPost extends StatefulWidget {
+  final String idGroup;
   const AddPost({
     Key? key,
+    required this.idGroup,
   }) : super(key: key);
 
   @override
@@ -133,10 +135,14 @@ class _AddPostState extends State<AddPost> {
                       'idCreater': userid,
                       'like': "0",
                       'description': description,
+                      'idGroup': widget.idGroup,
                     };
 
                     await Provider.of<DataProvider>(context, listen: false)
-                        .addPost(propositionBody);
+                        .addPost(
+                      propositionBody,
+                      widget.idGroup,
+                    );
 
                     Navigator.of(context).pop();
                   }

@@ -22,6 +22,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+
+    Provider.of<DataProvider>(context, listen: false).fetchPropositionsByBac();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final listcourses = Provider.of<DataProvider>(context).listCourse;
     return Scaffold(
@@ -188,16 +195,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   getRecommend() {
+    final listprops =
+        Provider.of<DataProvider>(context).listpropositionsBacType;
+
     return SingleChildScrollView(
       padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(
-          recommends.length,
+          listprops.length == 0 ? listprops.length : 5,
           (index) => Padding(
             padding: const EdgeInsets.only(right: 10),
             child: RecommendItem(
-              data: recommends[index],
+              data: listprops[index],
               onTap: () {},
             ),
           ),

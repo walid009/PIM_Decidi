@@ -9,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PostList extends StatefulWidget {
-  const PostList(this.name);
+  const PostList(this.name, this.idGroup);
   final String name;
+  final String idGroup;
   @override
   State<PostList> createState() => _PostListState();
 }
@@ -20,7 +21,8 @@ class _PostListState extends State<PostList> {
   void initState() {
     super.initState();
 
-    Provider.of<DataProvider>(context, listen: false).fetchPosts();
+    Provider.of<DataProvider>(context, listen: false)
+        .fetchPosts(widget.idGroup);
   }
 
   @override
@@ -45,7 +47,8 @@ class _PostListState extends State<PostList> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute<void>(
-                      builder: (BuildContext context) => MessageList(),
+                      builder: (BuildContext context) =>
+                          MessageList(widget.idGroup),
                     ),
                   );
                 },
@@ -64,7 +67,9 @@ class _PostListState extends State<PostList> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute<void>(
-                      builder: (BuildContext context) => AddPost(),
+                      builder: (BuildContext context) => AddPost(
+                        idGroup: widget.idGroup,
+                      ),
                     ),
                   );
                 },
