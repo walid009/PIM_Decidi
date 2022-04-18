@@ -23,7 +23,9 @@ class DataProvider with ChangeNotifier {
   late List<Post> listPost = [];
   late List<Message> listMsg = [];
   late User user = User("id", "firstName", "lastName", "email", "role", "type");
-
+  late List<User> listUsers = [];
+  late List<User> listUsersCoach = [];
+  late List<User> listUsersUser = [];
   late bool exist = true;
 
   void setUser(User u) {
@@ -313,5 +315,60 @@ class DataProvider with ChangeNotifier {
     await http.post(Uri.http(baseUrl, "/createmessage"), body: postBody);
 
     await fetchMessages(idGroup);
+  }
+
+  Future<void> fetchUsers() async {
+    List<User> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allusers"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      tempcars.add(User(
+          carsFromServer[i]["_id"],
+          carsFromServer[i]["firstName"],
+          carsFromServer[i]["firstName"],
+          carsFromServer[i]["email"],
+          carsFromServer[i]["role"],
+          carsFromServer[i]["bacType"]));
+    }
+    listUsers = tempcars;
+    notifyListeners();
+  }
+
+  Future<void> fetchUserscCoach() async {
+    List<User> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allusers"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      if (carsFromServer[i]["role"] == "coach") {
+        tempcars.add(User(
+            carsFromServer[i]["_id"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["email"],
+            carsFromServer[i]["role"],
+            carsFromServer[i]["bacType"]));
+      }
+    }
+    listUsersCoach = tempcars;
+    notifyListeners();
+  }
+
+  Future<void> fetchUserscUsers() async {
+    List<User> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allusers"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      if (carsFromServer[i]["role"] == "client") {
+        tempcars.add(User(
+            carsFromServer[i]["_id"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["email"],
+            carsFromServer[i]["role"],
+            carsFromServer[i]["bacType"]));
+      }
+    }
+    listUsersUser = tempcars;
+    notifyListeners();
   }
 }
