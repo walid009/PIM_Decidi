@@ -3,6 +3,11 @@ import 'package:decidi/widgets/admin_home_page_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/DataProvider.dart';
+import '../propositions/list_proposition.dart';
+import 'listcoach.dart';
+import 'listusers.dart';
+
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({Key? key}) : super(key: key);
 
@@ -14,15 +19,22 @@ class _AdminHomePageState extends State<AdminHomePage> {
   @override
   void initState() {
     super.initState();
-
     Provider.of<DataProvider>(context, listen: false).fetchPropositions();
     Provider.of<DataProvider>(context, listen: false).fetchUsers();
+    Provider.of<DataProvider>(context, listen: false).fetchUserscCoach();
+    Provider.of<DataProvider>(context, listen: false).fetchUserscUsers();
+  }
+
+  void reloadPage() {
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final propositions = Provider.of<DataProvider>(context).listpropositions;
     final users = Provider.of<DataProvider>(context).listusers;
+    final usersUser = Provider.of<DataProvider>(context).listUsersUser;
+    final usersCoach = Provider.of<DataProvider>(context).listUsersCoach;
+    final propositions = Provider.of<DataProvider>(context).listpropositions;
 
     return Scaffold(
       body: Container(
@@ -32,29 +44,56 @@ class _AdminHomePageState extends State<AdminHomePage> {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: [
-            AdminHomePageItem(
-              icon: Icon(
-                Icons.menu_book_outlined,
-                size: 80,
+            GestureDetector(
+              child: AdminHomePageItem(
+                icon: Icon(
+                  Icons.menu_book_outlined,
+                  size: 80,
+                ),
+                title: "Nbr of Proposition",
+                nbr: propositions.length,
               ),
-              title: "Nbr of Proposition",
-              nbr: propositions.length,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => ListProposition(),
+                  ),
+                );
+              },
             ),
-            AdminHomePageItem(
-              icon: Icon(
-                Icons.supervised_user_circle_outlined,
-                size: 80,
+            GestureDetector(
+              child: AdminHomePageItem(
+                icon: Icon(
+                  Icons.supervised_user_circle_outlined,
+                  size: 80,
+                ),
+                title: "Nbr of Coaches",
+                nbr: usersCoach.length,
               ),
-              title: "Nbr of Coaches",
-              nbr: Provider.of<DataProvider>(context).nbrCoach,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => ListCoachs(),
+                  ),
+                );
+              },
             ),
-            AdminHomePageItem(
-              icon: Icon(
-                Icons.person_outline,
-                size: 80,
+            GestureDetector(
+              child: AdminHomePageItem(
+                icon: Icon(
+                  Icons.person_outline,
+                  size: 80,
+                ),
+                title: "Nbr of Users",
+                nbr: usersUser.length,
               ),
-              title: "Nbr of Users",
-              nbr: users.length,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => ListUsers(),
+                  ),
+                );
+              },
             ),
           ],
         ),

@@ -16,6 +16,7 @@ import '../utils/constant.dart';
 class DataProvider with ChangeNotifier {
   late int nbrCoach = 0;
   late List<Course> listCourse = [];
+  late List<Course> listOfMyCourse = [];
   late List<ImagePortfolio> listImages = [];
   late List<User> listusers = [];
   late List<Proposition> listpropositions = [];
@@ -24,9 +25,10 @@ class DataProvider with ChangeNotifier {
   late List<Post> listPost = [];
   late List<Message> listMsg = [];
 
-
   late User user = User("id", "firstName", "lastName", "email", "role", "type");
-
+  late List<User> listUsers = [];
+  late List<User> listUsersCoach = [];
+  late List<User> listUsersUser = [];
   late bool exist = true;
 
   void setUser(User u) {
@@ -92,6 +94,26 @@ class DataProvider with ChangeNotifier {
           carsFromServer[i]["participants"]));
     }
     listCourse = tempcars;
+    notifyListeners();
+  }
+
+  Future<void> fetchMyCourse(String email) async {
+    List<Course> tempcars = [];
+    http.Response response =
+        await http.get(Uri.http(baseUrl, "/listofcourseforthisuser/" + email));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      tempcars.add(Course(
+          carsFromServer[i]["_id"],
+          carsFromServer[i]["image"],
+          carsFromServer[i]["title"],
+          carsFromServer[i]["description"],
+          carsFromServer[i]["price"],
+          carsFromServer[i]["capacity"],
+          carsFromServer[i]["nbParticipant"],
+          carsFromServer[i]["participants"]));
+    }
+    listOfMyCourse = tempcars;
     notifyListeners();
   }
 
@@ -298,7 +320,7 @@ class DataProvider with ChangeNotifier {
     await fetchMessages(idGroup);
   }
 
-
+/*
   Future<void> fetchUsers() async {
     List<User> tempuser = [];
     http.Response response =
@@ -329,5 +351,59 @@ class DataProvider with ChangeNotifier {
     listusers = tempuser;
     notifyListeners();
   }
+*/
+  Future<void> fetchUsers() async {
+    List<User> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allusers"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      tempcars.add(User(
+          carsFromServer[i]["_id"],
+          carsFromServer[i]["firstName"],
+          carsFromServer[i]["firstName"],
+          carsFromServer[i]["email"],
+          carsFromServer[i]["role"],
+          carsFromServer[i]["bacType"]));
+    }
+    listUsers = tempcars;
+    notifyListeners();
+  }
 
+  Future<void> fetchUserscCoach() async {
+    List<User> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allusers"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      if (carsFromServer[i]["role"] == "coach") {
+        tempcars.add(User(
+            carsFromServer[i]["_id"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["email"],
+            carsFromServer[i]["role"],
+            carsFromServer[i]["bacType"]));
+      }
+    }
+    listUsersCoach = tempcars;
+    notifyListeners();
+  }
+
+  Future<void> fetchUserscUsers() async {
+    List<User> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allusers"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      if (carsFromServer[i]["role"] == "client") {
+        tempcars.add(User(
+            carsFromServer[i]["_id"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["firstName"],
+            carsFromServer[i]["email"],
+            carsFromServer[i]["role"],
+            carsFromServer[i]["bacType"]));
+      }
+    }
+    listUsersUser = tempcars;
+    notifyListeners();
+  }
 }
