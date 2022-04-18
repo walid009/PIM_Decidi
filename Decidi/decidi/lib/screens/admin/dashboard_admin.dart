@@ -1,3 +1,4 @@
+
 import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/screens/admin/admin_home_page.dart';
 import 'package:decidi/screens/propositions/list_proposition.dart';
@@ -14,8 +15,10 @@ class DashboardAdmin extends StatefulWidget {
 }
 
 class _DashboardAdminState extends State<DashboardAdmin> {
+
   final bool isSelected = false;
   final Color selectedColor = actionColor;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

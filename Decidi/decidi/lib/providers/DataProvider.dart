@@ -14,13 +14,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/constant.dart';
 
 class DataProvider with ChangeNotifier {
+  late int nbrCoach = 0;
   late List<Course> listCourse = [];
   late List<ImagePortfolio> listImages = [];
+  late List<User> listusers = [];
   late List<Proposition> listpropositions = [];
   late List<Proposition> listpropositionsBacType = [];
   late List<Group> listGroup = [];
   late List<Post> listPost = [];
   late List<Message> listMsg = [];
+
+
   late User user = User("id", "firstName", "lastName", "email", "role", "type");
 
   late bool exist = true;
@@ -293,4 +297,37 @@ class DataProvider with ChangeNotifier {
 
     await fetchMessages(idGroup);
   }
+
+
+  Future<void> fetchUsers() async {
+    List<User> tempuser = [];
+    http.Response response =
+    await http.get(Uri.http(baseUrl, "/allusers"));
+
+    nbrCoach = 0 ;
+    List<dynamic> UsersFromServer = json.decode(response.body);
+
+    for (int i = 0; i < UsersFromServer.length; i++) {
+      if (UsersFromServer[i]["role"] == "coach"){
+        nbrCoach++;
+      }
+
+      tempuser.add(
+        User(
+          UsersFromServer[i]["_id"],
+          UsersFromServer[i]["firstName"],
+          "",
+          UsersFromServer[i]["email"],
+          "",
+          "",
+        ),
+      );
+
+    }
+
+
+    listusers = tempuser;
+    notifyListeners();
+  }
+
 }

@@ -1,5 +1,7 @@
+import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/widgets/admin_home_page_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({Key? key}) : super(key: key);
@@ -10,7 +12,18 @@ class AdminHomePage extends StatefulWidget {
 
 class _AdminHomePageState extends State<AdminHomePage> {
   @override
+  void initState() {
+    super.initState();
+
+    Provider.of<DataProvider>(context, listen: false).fetchPropositions();
+    Provider.of<DataProvider>(context, listen: false).fetchUsers();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final propositions = Provider.of<DataProvider>(context).listpropositions;
+    final users = Provider.of<DataProvider>(context).listusers;
+
     return Scaffold(
       body: Container(
         margin: EdgeInsets.all(10),
@@ -25,7 +38,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 size: 80,
               ),
               title: "Nbr of Proposition",
-              nbr: 2,
+              nbr: propositions.length,
             ),
             AdminHomePageItem(
               icon: Icon(
@@ -33,7 +46,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 size: 80,
               ),
               title: "Nbr of Coaches",
-              nbr: 5,
+              nbr: Provider.of<DataProvider>(context).nbrCoach,
             ),
             AdminHomePageItem(
               icon: Icon(
@@ -41,7 +54,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 size: 80,
               ),
               title: "Nbr of Users",
-              nbr: 5,
+              nbr: users.length,
             ),
           ],
         ),
