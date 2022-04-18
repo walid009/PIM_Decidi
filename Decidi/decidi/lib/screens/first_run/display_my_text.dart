@@ -47,7 +47,7 @@ class _DisplayNotesState extends State<DisplayNotes> {
               height: 20,
             ),
             IconButton(
-              onPressed: () => Navigator.of(context).push<void>(
+              onPressed: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute<void>(
                   builder: (BuildContext context) => RootApp(),
                 ),
