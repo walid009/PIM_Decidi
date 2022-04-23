@@ -1,3 +1,4 @@
+import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/widgets/admin_home_page_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,9 @@ import 'listcoach.dart';
 import 'listusers.dart';
 
 class AdminHomePage extends StatefulWidget {
-  const AdminHomePage({Key? key}) : super(key: key);
+  final Function goToProp;
+
+  const AdminHomePage({Key? key, required this.goToProp}) : super(key: key);
 
   @override
   State<AdminHomePage> createState() => _AdminHomePageState();
@@ -17,7 +20,6 @@ class AdminHomePage extends StatefulWidget {
 class _AdminHomePageState extends State<AdminHomePage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Provider.of<DataProvider>(context, listen: false).fetchPropositions();
     Provider.of<DataProvider>(context, listen: false).fetchUsers();
@@ -31,10 +33,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final users = Provider.of<DataProvider>(context).listUsers;
+    final users = Provider.of<DataProvider>(context).listusers;
     final usersUser = Provider.of<DataProvider>(context).listUsersUser;
     final usersCoach = Provider.of<DataProvider>(context).listUsersCoach;
     final propositions = Provider.of<DataProvider>(context).listpropositions;
+
     return Scaffold(
       body: Container(
         margin: EdgeInsets.all(10),
@@ -53,11 +56,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 nbr: propositions.length,
               ),
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => ListProposition(),
-                  ),
-                );
+                widget.goToProp();
               },
             ),
             GestureDetector(

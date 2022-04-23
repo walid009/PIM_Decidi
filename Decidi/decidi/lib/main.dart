@@ -3,6 +3,7 @@ import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/screens/course/add_course.dart';
 import 'package:decidi/screens/course/course_list.dart';
 import 'package:decidi/screens/course/meet.dart';
+import 'package:decidi/screens/first_run/display_my_text_Info.dart';
 import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/screens/admin/dashboard_admin.dart';
 import 'package:decidi/screens/first_run/first_run.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primaryColor: primary,
           ),
-          home: SignInScreen()
+          home: FirstRun()
+          //SignInScreen()
           //RootApp()
           // HomePage()
 

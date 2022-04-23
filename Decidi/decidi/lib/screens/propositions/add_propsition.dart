@@ -7,8 +7,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class AddProposition extends StatefulWidget {
-  const AddProposition({Key? key, required this.reload}) : super(key: key);
-  final Function reload;
+  const AddProposition({
+    Key? key,
+  }) : super(key: key);
+
   @override
   State<AddProposition> createState() => _AddPropositionState();
 }

@@ -30,6 +30,15 @@ class _ListUsersState extends State<ListUsers> {
     final users = Provider.of<DataProvider>(context).listUsersUser;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appBgColor,
+        foregroundColor: Colors.black,
+        title: Text(
+          "Users",
+          style: TextStyle(
+              color: textColor, fontSize: 24, fontWeight: FontWeight.w600),
+        ),
+      ),
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {
