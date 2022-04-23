@@ -1,0 +1,56 @@
+name: decidi
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  http: ^0.13.4
+  flutter_svg: ^0.22.0
+  badges: ^2.0.2
+  carousel_slider: ^4.0.0
+  auto_size_text: 3.0.0
+  cached_network_image: 3.1.0+1
+  font_awesome_flutter: ^9.2.0
+  google_fonts: 2.1.0
+  intl: 0.17.0
+  json_path: 0.2.1
+  page_transition: 2.0.4
+  timeago: 3.1.0
+  url_launcher: 6.0.15
+  path: ^1.8.0
+  shared_preferences: ^2.0.11
+  sqflite: ^2.0.1
+  google_ml_kit: ^0.7.3
+  image_picker: ^0.8.4+10
+  provider: ^6.0.2
+  flutter_braintree: ^2.3.1
+  share: ^2.0.4
+  agora_rtc_engine: ^4.0.2
+  permission_handler: ^8.1.1
+  google_sign_in: ^5.2.4
+  fluttertoast: ^8.0.7
+  firebase_auth: ^1.4.1
+  flutter_facebook_auth: ^4.1.1
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  
+flutter:
+
+  uses-material-design: true
+  
+  assets:
+    - assets/icons/
+    - assets/icons/category/
+    - assets/images/
