@@ -30,6 +30,15 @@ class _ListCoachsState extends State<ListCoachs> {
     final coachs = Provider.of<DataProvider>(context).listUsersCoach;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appBgColor,
+        foregroundColor: Colors.black,
+        title: Text(
+          "Coachs",
+          style: TextStyle(
+              color: textColor, fontSize: 24, fontWeight: FontWeight.w600),
+        ),
+      ),
       body: ListView.builder(
         itemCount: coachs.length,
         itemBuilder: (context, index) {

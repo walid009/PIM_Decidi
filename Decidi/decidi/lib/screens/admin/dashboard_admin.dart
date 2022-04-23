@@ -1,4 +1,3 @@
-
 import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/screens/admin/admin_home_page.dart';
 import 'package:decidi/screens/propositions/list_proposition.dart';
@@ -14,10 +13,24 @@ class DashboardAdmin extends StatefulWidget {
   State<DashboardAdmin> createState() => _DashboardAdminState();
 }
 
-class _DashboardAdminState extends State<DashboardAdmin> {
-
+class _DashboardAdminState extends State<DashboardAdmin>
+    with TickerProviderStateMixin {
   final bool isSelected = false;
   final Color selectedColor = actionColor;
+  late TabController tabController;
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(
+      initialIndex: 0,
+      length: 2,
+      vsync: this,
+    );
+  }
+
+  void goToProp() {
+    tabController.animateTo(1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +44,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
             child: new Container(
               width: MediaQuery.of(context).size.width * 0.9,
               child: TabBar(
+                controller: tabController,
                 tabs: [
                   Container(
                     height: 50,
@@ -95,8 +109,8 @@ class _DashboardAdminState extends State<DashboardAdmin> {
           ],
           // shadowColor: Colors.black,
         ),
-        body: TabBarView(children: [
-          AdminHomePage(),
+        body: TabBarView(controller: tabController, children: [
+          AdminHomePage(goToProp: goToProp),
           ListProposition(),
         ]),
       ),

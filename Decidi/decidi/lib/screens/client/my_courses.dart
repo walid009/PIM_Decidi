@@ -35,6 +35,7 @@ class _MyCoursesState extends State<MyCourses> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: appBgColor,
+          foregroundColor: Colors.black,
           title: Text(
             "My Courses",
             style: TextStyle(

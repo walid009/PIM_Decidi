@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:decidi/screens/first_run/display_my_text_Info.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
@@ -157,6 +158,7 @@ class _FirstRunState extends State<FirstRun> {
   }
 
   Future getText(String path) async {
+    bacGradesData.clear();
     final inputImage = InputImage.fromFilePath(path);
     final textDetector = GoogleMlKit.vision.textDetector();
     final RecognisedText _reconizedText =
@@ -186,7 +188,8 @@ class _FirstRunState extends State<FirstRun> {
     Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
         builder: (BuildContext context) =>
-            DisplayNotes(bacGradesData, _dropdownValue),
+           DisplayNotes(bacGradesData, _dropdownValue),
+        //DisplayMyTextInfo(bacGradesData, _dropdownValue)
       ),
     );
     // print(data.toString());

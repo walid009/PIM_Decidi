@@ -9,7 +9,9 @@ import 'listcoach.dart';
 import 'listusers.dart';
 
 class AdminHomePage extends StatefulWidget {
-  const AdminHomePage({Key? key}) : super(key: key);
+  final Function goToProp;
+
+  const AdminHomePage({Key? key, required this.goToProp}) : super(key: key);
 
   @override
   State<AdminHomePage> createState() => _AdminHomePageState();
@@ -54,11 +56,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 nbr: propositions.length,
               ),
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => ListProposition(),
-                  ),
-                );
+                widget.goToProp();
               },
             ),
             GestureDetector(
