@@ -17,20 +17,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<DataProvider>(create: (_) => DataProvider()),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Decidi App',
-          theme: ThemeData(
-            primaryColor: primary,
-          ),
-          home: SignInScreen()
-          //SignInScreen()
-          //RootApp()
-          // HomePage()
+        debugShowCheckedModeBanner: false,
+        title: 'Decidi App',
+        theme: ThemeData(
+          primaryColor: primary,
+        ),
+        home: // SignInScreen()
+            //SignInScreen()
+            //RootApp()
+            // HomePage()
 
-          ///ExplorePage(),
+            ///ExplorePage(),
 
-          // FirstRun(),
-          ),
+            FirstRun(),
+      ),
     );
   }
 }

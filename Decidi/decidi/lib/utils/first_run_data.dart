@@ -45,6 +45,20 @@ List<String> ScienceMat = [
   "Moy Generale"
 ];
 
+List<String> SportMat = [
+  "Specialite sportive",
+  "Science",
+  "Physique",
+  "Mathematique",
+  "Anglais",
+  "Francais",
+  "Arabe",
+  "Philo",
+  "Sport",
+  "Info",
+  "Moy Generale"
+];
+
 List<String> MathMat = [
   "Mathematique",
   "Physique",
@@ -80,7 +94,7 @@ List<String> LettreMat = [
   "Histoire et Geographie",
   "Anglais",
   "Francais",
-  "filo islamique",
+  "Philo islamique",
   "Info",
   "Sport",
   "Option",
