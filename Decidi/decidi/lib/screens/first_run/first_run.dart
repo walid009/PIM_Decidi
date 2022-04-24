@@ -1,6 +1,12 @@
 import 'dart:io';
 
+import 'package:decidi/screens/first_run/display_my_text_Eco.dart';
+import 'package:decidi/screens/first_run/display_my_text_Lettres.dart';
+import 'package:decidi/screens/first_run/display_my_text_Science.dart';
 import 'package:decidi/screens/first_run/display_my_text_Info.dart';
+import 'package:decidi/screens/first_run/display_my_text_Math.dart';
+import 'package:decidi/screens/first_run/display_my_text_Sport.dart';
+import 'package:decidi/screens/first_run/display_my_text_Tech.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/utils/first_run_data.dart';
 import 'package:flutter/material.dart';
@@ -185,13 +191,51 @@ class _FirstRunState extends State<FirstRun> {
     }
     // ignore: avoid_print
     print(bacGradesData);
-    Navigator.of(context).push<void>(MaterialPageRoute<void>(
-      builder: (BuildContext context) =>
-          DisplayNotes(bacGradesData, _dropdownValue),
-    )
-        //DisplayMyTextInfo(bacGradesData, _dropdownValue)),
-        );
+    Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) => goTo(),
+      ),
+    );
     // print(data.toString());
+  }
+
+  goTo() {
+    switch (_dropdownValue) {
+      case "Info":
+        {
+          return DisplayMyTextInfo(bacGradesData, _dropdownValue);
+        }
+
+      case "Math":
+        {
+          return DisplayMyTextMath(bacGradesData, _dropdownValue);
+        }
+
+      case "Eco":
+        {
+          return DisplayMyTextEco(bacGradesData, _dropdownValue);
+        }
+
+      case "Science":
+        {
+          return DisplayMyTextScience(bacGradesData, _dropdownValue);
+        }
+
+      case "Sport":
+        {
+          return DisplayMyTextSport(bacGradesData, _dropdownValue);
+        }
+
+      case "Tech":
+        {
+          return DisplayMyTextTech(bacGradesData, _dropdownValue);
+        }
+
+      default:
+        {
+          return DisplayMyTextLettres(bacGradesData, _dropdownValue);
+        }
+    }
   }
 
   // this is for getting the image form the gallery

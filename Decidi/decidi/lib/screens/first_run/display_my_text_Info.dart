@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:decidi/providers/DataProvider.dart';
+import 'package:decidi/theme/color.dart';
 import 'first_run.dart';
 import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/utils/constant.dart';
@@ -21,14 +22,34 @@ class DisplayMyTextInfo extends StatefulWidget {
 }
 
 class _DisplayMyTextInfoState extends State<DisplayMyTextInfo> {
+  TextEditingController algorithmique = TextEditingController();
+  TextEditingController mathematique = TextEditingController();
+  TextEditingController basesdedonnees = TextEditingController();
+  TextEditingController physique = TextEditingController();
+  TextEditingController anglais = TextEditingController();
+  TextEditingController francais = TextEditingController();
+  TextEditingController arabe = TextEditingController();
+  TextEditingController tic = TextEditingController();
+  TextEditingController philo = TextEditingController();
+  TextEditingController sport = TextEditingController();
+  TextEditingController option = TextEditingController();
   TextEditingController moy = TextEditingController();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
-    moy.text = widget.bacGradesData[0].x;
+    algorithmique.text = widget.bacGradesData[0].x;
+    mathematique.text = widget.bacGradesData[1].x;
+    basesdedonnees.text = widget.bacGradesData[2].x;
+    physique.text = widget.bacGradesData[3].x;
+    anglais.text = widget.bacGradesData[4].x;
+    francais.text = widget.bacGradesData[5].x;
+    arabe.text = widget.bacGradesData[6].x;
+    tic.text = widget.bacGradesData[7].x;
+    philo.text = widget.bacGradesData[8].x;
+    sport.text = widget.bacGradesData[9].x;
+    option.text = widget.bacGradesData[10].x;
+    moy.text = widget.bacGradesData[11].x;
   }
 
   @override
@@ -45,46 +66,306 @@ class _DisplayMyTextInfoState extends State<DisplayMyTextInfo> {
           ),
           backgroundColor: Colors.white),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Text("Bac type is :" + widget.type),
-            TextField(
-              controller: moy,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            IconButton(
-              onPressed: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                final userid = prefs.getString("userId");
-                final user =
-                    Provider.of<DataProvider>(context, listen: false).user;
-                user.bacType = widget.type.toUpperCase();
-                Provider.of<DataProvider>(context, listen: false).setUser(user);
-                Map<String, dynamic> userData = {
-                  "userId": userid,
-                  "bacType": widget.type.toUpperCase(),
-                };
-
-                Map<String, String> headers = {
-                  "Content-Type": "application/json; charset=UTF-8"
-                };
-
-                await http.put(Uri.http(baseUrl, "/updateuserbac"),
-                    headers: headers, body: json.encode(userData));
-                Navigator.of(context).push<void>(
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => RootApp(),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          margin: EdgeInsets.only(bottom: 5, top: 5),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Text("Bac type is :" + widget.type),
+              SizedBox(
+                height: 20,
+              ),
+              //----------------------------------------
+              //----------------------------------------
+              TextField(
+                controller: algorithmique,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                );
-              },
-              icon: Icon(Icons.navigate_next),
-            ),
-          ],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Algorithmique :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: mathematique,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Mathematique :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: basesdedonnees,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Bases de donnees :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: physique,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Physique :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: anglais,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Anglais :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: francais,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Francais :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: arabe,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Arabe :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: tic,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "TIC :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: philo,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Philo :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: sport,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Sport :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: option,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Option :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: moy,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Moyenne :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+              ),
+
+              //----------------------------------------
+              //----------------------------------------
+              SizedBox(
+                height: 20,
+              ),
+              IconButton(
+                onPressed: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  final userid = prefs.getString("userId");
+                  final user =
+                      Provider.of<DataProvider>(context, listen: false).user;
+                  user.bacType = widget.type.toUpperCase();
+                  Provider.of<DataProvider>(context, listen: false)
+                      .setUser(user);
+                  Map<String, dynamic> userData = {
+                    "userId": userid,
+                    "bacType": widget.type.toUpperCase(),
+                  };
+
+                  Map<String, String> headers = {
+                    "Content-Type": "application/json; charset=UTF-8"
+                  };
+
+                  await http.put(Uri.http(baseUrl, "/updateuserbac"),
+                      headers: headers, body: json.encode(userData));
+                  Navigator.of(context).push<void>(
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => RootApp(),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.navigate_next),
+              ),
+            ],
+          ),
         ),
       ),
     );
