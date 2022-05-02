@@ -1,20 +1,25 @@
 import 'package:decidi/providers/DataProvider.dart';
+import 'package:decidi/screens/course/course_edit.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import '../models/course.dart';
 import '../screens/course/course_list.dart';
 
 // ignore: must_be_immutable
+
 class CourseView extends StatelessWidget {
   late String id;
   late String image;
   late String title;
   late String price;
+  late Course course;
 
-  CourseView(this.id, this.image, this.title, this.price, {Key? key})
+  CourseView(this.course, this.id, this.image, this.title, this.price,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -51,6 +56,46 @@ class CourseView extends StatelessWidget {
                 width: double.infinity,
                 height: 190,
                 radius: 15,
+              ),
+              Positioned(
+                top: 210,
+                right: 110,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return EditCourse(course);
+                    }));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: shadowColor.withOpacity(0.05),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
+                    child: RichText(
+                      text: TextSpan(children: [
+                        WidgetSpan(
+                          alignment: PlaceholderAlignment.middle,
+                          child: Icon(Icons.edit, color: Colors.white),
+                        ),
+                        TextSpan(
+                          text: "Edit",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w500),
+                        ),
+                      ]),
+                    ),
+                  ),
+                ),
               ),
               Positioned(
                 top: 210,

@@ -88,6 +88,7 @@ class DataProvider with ChangeNotifier {
           carsFromServer[i]["_id"],
           carsFromServer[i]["image"],
           carsFromServer[i]["title"],
+          carsFromServer[i]["type"],
           carsFromServer[i]["description"],
           carsFromServer[i]["price"],
           carsFromServer[i]["capacity"],
@@ -108,6 +109,7 @@ class DataProvider with ChangeNotifier {
           carsFromServer[i]["_id"],
           carsFromServer[i]["image"],
           carsFromServer[i]["title"],
+          carsFromServer[i]["type"],
           carsFromServer[i]["description"],
           carsFromServer[i]["price"],
           carsFromServer[i]["capacity"],
@@ -144,6 +146,14 @@ class DataProvider with ChangeNotifier {
     await http.post(Uri.http(baseUrl, "/createcourse"),
         //headers: headers,
         body: carBody);*/
+
+    await fetchCourse();
+  }
+
+  Future<void> UpdateCourse(Map<String, dynamic> courseBody) async {
+    print("update" + courseBody["_id"]);
+    await http.put(Uri.http(baseUrl, "/updatecourse/" + courseBody["_id"]),
+        body: courseBody);
 
     await fetchCourse();
   }
