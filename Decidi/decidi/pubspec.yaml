@@ -39,7 +39,8 @@ dependencies:
   fluttertoast: ^8.0.7
   firebase_auth: ^1.4.1
   flutter_facebook_auth: ^4.1.1
-  
+  syncfusion_flutter_charts: ^19.1.56
+
 
 dev_dependencies:
   flutter_test:
