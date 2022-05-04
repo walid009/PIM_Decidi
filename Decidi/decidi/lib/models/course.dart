@@ -4,6 +4,7 @@ class Course {
   late String courseId;
   late String courseImage;
   late String courseTitle;
+  late String courseType;
   late String courseDescription;
   late String coursePrice;
   late String courseCapacity;
@@ -14,6 +15,7 @@ class Course {
       this.courseId,
       this.courseImage,
       this.courseTitle,
+      this.courseType,
       this.courseDescription,
       this.coursePrice,
       this.courseCapacity,

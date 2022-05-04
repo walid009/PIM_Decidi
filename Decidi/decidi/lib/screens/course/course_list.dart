@@ -52,6 +52,7 @@ class _CourseListState extends State<CourseList> {
           itemBuilder: (context, index) {
             print(cars[index].courseId);
             return CourseView(
+                cars[index],
                 cars[index].courseId,
                 "http://" + baseUrl + "/" + cars[index].courseImage,
                 cars[index].courseTitle,
