@@ -1,4 +1,5 @@
 import 'package:decidi/screens/SignInScreen.dart';
+import 'package:decidi/screens/course/course_chart.dart';
 import 'package:decidi/screens/course/course_list.dart';
 import 'package:decidi/screens/group/group_list.dart';
 import 'package:decidi/theme/color.dart';
@@ -23,7 +24,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           bottom: new PreferredSize(
@@ -37,7 +38,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
                     height: 50,
                     child: Center(
                       child: Text(
-                        "Courses",
+                        "List Courses",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: labelColor,
@@ -51,7 +52,21 @@ class _NavigationBottomState extends State<NavigationBottom> {
                     height: 50,
                     child: Center(
                       child: Text(
-                        "Groups",
+                        "Chart Courses",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: labelColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 50,
+                    child: Center(
+                      child: Text(
+                        "List Groups",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: labelColor,
@@ -95,6 +110,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
         //body: interfaces[current_index],
         body: TabBarView(children: [
           CourseList(),
+          CourseChart(),
           GroupList(),
         ]),
         // bottomNavigationBar: BottomNavigationBar(

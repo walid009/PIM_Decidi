@@ -11,11 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../screens/course/course_chart.dart';
 import '../utils/constant.dart';
 
 class DataProvider with ChangeNotifier {
   late int nbrCoach = 0;
   late List<Course> listCourse = [];
+  late List<GDPData> listStatistiquesCourse = [];
   late List<Course> listOfMyCourse = [];
   late List<ImagePortfolio> listImages = [];
   late List<User> listusers = [];
@@ -96,6 +98,18 @@ class DataProvider with ChangeNotifier {
           carsFromServer[i]["participants"]));
     }
     listCourse = tempcars;
+    notifyListeners();
+  }
+
+  Future<void> fetchCourseStatistique() async {
+    List<GDPData> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allcourses"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      tempcars.add(GDPData(carsFromServer[i]["title"],
+          carsFromServer[i]["participants"].length));
+    }
+    listStatistiquesCourse = tempcars;
     notifyListeners();
   }
 
