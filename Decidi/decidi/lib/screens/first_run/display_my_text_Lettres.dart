@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cool_alert/cool_alert.dart';
 import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/theme/color.dart';
@@ -50,7 +51,19 @@ class _DisplayMyTextLettresState extends State<DisplayMyTextLettres> {
       sport.text = widget.bacGradesData[7].x;
       option.text = widget.bacGradesData[8].x;
       moy.text = widget.bacGradesData[9].x;
+    } else {
+      openAlert("Error", "Bac Type is worng or Image not clear!");
     }
+  }
+
+  // Advanced using of alerts
+  Future<void> openAlert(String title, String desc) async {
+    await CoolAlert.show(
+        context: context,
+        type: CoolAlertType.warning,
+        title: title,
+        text: desc,
+        backgroundColor: Theme.of(context).primaryColor);
   }
 
   @override
