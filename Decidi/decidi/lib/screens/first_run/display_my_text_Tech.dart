@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:decidi/providers/DataProvider.dart';
+import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/theme/color.dart';
+import 'package:decidi/utils/first_run_data.dart';
 import 'first_run.dart';
 import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/utils/constant.dart';
@@ -38,18 +40,20 @@ class _DisplayMyTextTechState extends State<DisplayMyTextTech> {
   @override
   void initState() {
     super.initState();
-    electriqueetmecanique.text = widget.bacGradesData[0].x;
-    mathematique.text = widget.bacGradesData[1].x;
-    physique.text = widget.bacGradesData[3].x;
-    anglais.text = widget.bacGradesData[4].x;
-    francais.text = widget.bacGradesData[5].x;
-    arabe.text = widget.bacGradesData[6].x;
-    philo.text = widget.bacGradesData[8].x;
-    info.text = widget.bacGradesData[7].x;
-    technologieappliquee.text = widget.bacGradesData[7].x;
-    sport.text = widget.bacGradesData[9].x;
-    option.text = widget.bacGradesData[10].x;
-    moy.text = widget.bacGradesData[11].x;
+    if (widget.bacGradesData.length == 12) {
+      electriqueetmecanique.text = widget.bacGradesData[0].x;
+      mathematique.text = widget.bacGradesData[1].x;
+      physique.text = widget.bacGradesData[3].x;
+      anglais.text = widget.bacGradesData[4].x;
+      francais.text = widget.bacGradesData[5].x;
+      arabe.text = widget.bacGradesData[6].x;
+      philo.text = widget.bacGradesData[8].x;
+      info.text = widget.bacGradesData[7].x;
+      technologieappliquee.text = widget.bacGradesData[7].x;
+      sport.text = widget.bacGradesData[9].x;
+      option.text = widget.bacGradesData[10].x;
+      moy.text = widget.bacGradesData[11].x;
+    }
   }
 
   @override
@@ -339,6 +343,39 @@ class _DisplayMyTextTechState extends State<DisplayMyTextTech> {
               ),
               IconButton(
                 onPressed: () async {
+                  final bac = items.indexOf(widget.type) + 1;
+                  final url = "BAC=" +
+                      bac.toString() +
+                      "&Moyenne=" +
+                      moy.text +
+                      "&ElectriqueMecanique=" +
+                      electriqueetmecanique.text +
+                      "&Physique=" +
+                      physique.text +
+                      "&TechnologieAppliquee=" +
+                      technologieappliquee.text +
+                      "&Math=" +
+                      mathematique.text +
+                      "&Anglais=" +
+                      anglais.text +
+                      "&Francais=" +
+                      francais.text +
+                      "&Arabe=" +
+                      arabe.text +
+                      "&Philo=" +
+                      philo.text +
+                      "&Info=" +
+                      info.text +
+                      "&Sport=" +
+                      sport.text +
+                      "&Option=" +
+                      option.text;
+                  final response = await http.get(
+                    Uri.parse("http://10.0.2.2:2220/?" + url),
+                  );
+                  var code =
+                      response.body.substring(1, response.body.length - 1);
+                  print(code);
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
                   final userid = prefs.getString("userId");
@@ -350,6 +387,7 @@ class _DisplayMyTextTechState extends State<DisplayMyTextTech> {
                   Map<String, dynamic> userData = {
                     "userId": userid,
                     "bacType": widget.type.toUpperCase(),
+                    "codeAI": int.parse(code)
                   };
 
                   Map<String, String> headers = {
@@ -360,7 +398,7 @@ class _DisplayMyTextTechState extends State<DisplayMyTextTech> {
                       headers: headers, body: json.encode(userData));
                   Navigator.of(context).push<void>(
                     MaterialPageRoute<void>(
-                      builder: (BuildContext context) => RootApp(),
+                      builder: (BuildContext context) => SignInScreen(),
                     ),
                   );
                 },

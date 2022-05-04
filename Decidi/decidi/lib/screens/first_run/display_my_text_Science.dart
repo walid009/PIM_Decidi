@@ -39,17 +39,19 @@ class _DisplayMyTextScienceState extends State<DisplayMyTextScience> {
   @override
   void initState() {
     super.initState();
-    physique.text = widget.bacGradesData[0].x;
-    science.text = widget.bacGradesData[1].x;
-    mathematique.text = widget.bacGradesData[2].x;
-    anglais.text = widget.bacGradesData[3].x;
-    francais.text = widget.bacGradesData[4].x;
-    arabe.text = widget.bacGradesData[5].x;
-    philo.text = widget.bacGradesData[6].x;
-    info.text = widget.bacGradesData[7].x;
-    sport.text = widget.bacGradesData[8].x;
-    option.text = widget.bacGradesData[9].x;
-    moy.text = widget.bacGradesData[10].x;
+    if (widget.bacGradesData.length == 11) {
+      physique.text = widget.bacGradesData[0].x;
+      science.text = widget.bacGradesData[1].x;
+      mathematique.text = widget.bacGradesData[2].x;
+      anglais.text = widget.bacGradesData[3].x;
+      francais.text = widget.bacGradesData[4].x;
+      arabe.text = widget.bacGradesData[5].x;
+      philo.text = widget.bacGradesData[6].x;
+      info.text = widget.bacGradesData[7].x;
+      sport.text = widget.bacGradesData[8].x;
+      option.text = widget.bacGradesData[9].x;
+      moy.text = widget.bacGradesData[10].x;
+    }
   }
 
   @override
