@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          getRecommend(),
+          //getRecommend(),
         ]),
       ),
     );

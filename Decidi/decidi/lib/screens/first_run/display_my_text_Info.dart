@@ -6,7 +6,6 @@ import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/utils/first_run_data.dart';
 import 'first_run.dart';
-import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
