@@ -1,4 +1,4 @@
-package com.sangvaleap.online_course
+package com.sangvaleap.onlinecourse.braintree
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:935990641581:android:19f54392afd0d7d9fad724",
         "android_client_info": {
-          "package_name": "com.sangvaleap.online_course"
+          "package_name": "com.sangvaleap.onlinecourse.braintree"
         }
       },
       "oauth_client": [

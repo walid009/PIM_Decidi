@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sangvaleap.online_course">
+    package="com.sangvaleap.onlinecourse.braintree">
     <uses-permission android:name="android.permission.INTERNET"/>
         
    <application
@@ -52,6 +52,19 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+       <activity android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
+           android:exported="true"
+           android:launchMode="singleTask">
+           <intent-filter>
+               <action android:name="android.intent.action.VIEW" />
+               <category android:name="android.intent.category.DEFAULT" />
+               <category android:name="android.intent.category.BROWSABLE" />
+               <data android:scheme="${applicationId}.braintree" />
+           </intent-filter>
+       </activity>
+       <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true"/>
+
     </application>
     <uses-permission  android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission  android:name="android.permission.INTERNET"  />
