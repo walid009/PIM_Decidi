@@ -157,13 +157,15 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addCourse(String text, String capacity, String price,
-      String description, File file) async {
+  Future<void> addCourse(String text, String type, String capacity,
+      String price, String description, File file, String bactype) async {
     //create multipart request for POST or PATCH method
     var request =
         http.MultipartRequest("POST", Uri.http(baseUrl, "/createcourse"));
     //add text fields
     request.fields["title"] = text;
+    request.fields["type"] = type;
+    request.fields["bacType"] = bactype;
     request.fields["capacity"] = capacity;
     request.fields["price"] = price;
     request.fields["description"] = description;
