@@ -17,6 +17,7 @@ import '../utils/constant.dart';
 class DataProvider with ChangeNotifier {
   late int nbrCoach = 0;
   late List<Course> listCourse = [];
+  late List<Course> listCourseParBacTyoe = [];
   late List<GDPData> listStatistiquesCourse = [];
   late List<Course> listOfMyCourse = [];
   late List<ImagePortfolio> listImages = [];
@@ -98,6 +99,28 @@ class DataProvider with ChangeNotifier {
           carsFromServer[i]["participants"]));
     }
     listCourse = tempcars;
+    notifyListeners();
+  }
+
+  Future<void> fetchCourseParBacType() async {
+    print('bac type=' + user.bacType);
+    List<Course> tempcars = [];
+    http.Response response = await http.get(Uri.http(baseUrl, "/allcourses"));
+    List<dynamic> carsFromServer = json.decode(response.body);
+    for (int i = 0; i < carsFromServer.length; i++) {
+      if (carsFromServer[i]["bacType"] == user.bacType)
+        tempcars.add(Course(
+            carsFromServer[i]["_id"],
+            carsFromServer[i]["image"],
+            carsFromServer[i]["title"],
+            carsFromServer[i]["type"],
+            carsFromServer[i]["description"],
+            carsFromServer[i]["price"],
+            carsFromServer[i]["capacity"],
+            carsFromServer[i]["nbParticipant"],
+            carsFromServer[i]["participants"]));
+    }
+    listCourseParBacTyoe = tempcars;
     notifyListeners();
   }
 

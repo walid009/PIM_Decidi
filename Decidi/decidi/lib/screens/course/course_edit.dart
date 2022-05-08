@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 
 import '../../models/course.dart';
 import '../../utils/constant.dart';
+import '../../utils/first_run_data.dart';
+import '../first_run/first_run.dart';
 import 'course_list.dart';
 
 class EditCourse extends StatefulWidget {
@@ -33,6 +35,16 @@ class _EditCourseState extends State<EditCourse> {
   TextEditingController capacityP = TextEditingController();
   TextEditingController priceP = TextEditingController();
   TextEditingController descriptionP = TextEditingController();
+
+  String imagePath = "asd";
+  late File myImagePath;
+  String finalText = ' ';
+  bool isLoaded = false;
+
+  List<MyData> data = [];
+  List<MyData> bacGradesData = [];
+
+  String _dropdownValue = "Info";
 
   @override
   void initState() {
@@ -287,6 +299,28 @@ class _EditCourseState extends State<EditCourse> {
                   }
                 },
               ),
+              DropdownButton(
+                items: items.map((item) {
+                  return DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _dropdownValue = newValue!;
+                  });
+                  print(_dropdownValue.toUpperCase());
+                },
+                value: _dropdownValue,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: secondary),
+                underline: Container(
+                  height: 2,
+                  color: secondary,
+                ),
+              ),
             ],
           ),
         ),
@@ -335,7 +369,8 @@ class _EditCourseState extends State<EditCourse> {
                       'type': type,
                       'capacity': capacity.toString(),
                       'price': price.toString(),
-                      'description': description
+                      'description': description,
+                      'bacType': _dropdownValue.toUpperCase()
                     };
 
                     await Provider.of<DataProvider>(context, listen: false)

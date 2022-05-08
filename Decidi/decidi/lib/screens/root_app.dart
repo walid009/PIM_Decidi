@@ -62,7 +62,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Provider.of<DataProvider>(context, listen: false).fetchCourse();
+    //Provider.of<DataProvider>(context, listen: false).fetchCourseParBacType();
     _controller.forward();
   }
 
