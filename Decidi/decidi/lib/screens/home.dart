@@ -10,6 +10,7 @@ import 'package:decidi/widgets/feature_item.dart';
 import 'package:decidi/widgets/notification_box.dart';
 import 'package:decidi/widgets/recommend_item.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/course.dart';
 import '../providers/DataProvider.dart';
@@ -29,12 +30,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     Provider.of<DataProvider>(context, listen: false).fetchPropositionsByBac();
+    Provider.of<DataProvider>(context, listen: false).fetchCourseParBacType();
     user = Provider.of<DataProvider>(context, listen: false).user;
   }
 
   @override
   Widget build(BuildContext context) {
-    final listcourses = Provider.of<DataProvider>(context).listCourse;
+    final listcourses = Provider.of<DataProvider>(context).listCourseParBacTyoe;
     return Scaffold(
         backgroundColor: appBgColor,
         body: CustomScrollView(

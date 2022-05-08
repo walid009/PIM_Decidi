@@ -8,6 +8,15 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/first_run_data.dart';
+import '../first_run/display_my_text_Eco.dart';
+import '../first_run/display_my_text_Info.dart';
+import '../first_run/display_my_text_Lettres.dart';
+import '../first_run/display_my_text_Math.dart';
+import '../first_run/display_my_text_Science.dart';
+import '../first_run/display_my_text_Sport.dart';
+import '../first_run/display_my_text_Tech.dart';
+import '../first_run/first_run.dart';
 import 'course_list.dart';
 
 class AddCourse extends StatefulWidget {
@@ -25,6 +34,16 @@ class _AddCourseState extends State<AddCourse> {
   late int price;
   late String description;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  String imagePath = "asd";
+  late File myImagePath;
+  String finalText = ' ';
+  bool isLoaded = false;
+
+  List<MyData> data = [];
+  List<MyData> bacGradesData = [];
+
+  String _dropdownValue = "Info";
 
   File? image;
   Future pickImage() async {
@@ -261,6 +280,31 @@ class _AddCourseState extends State<AddCourse> {
                   }
                 },
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              DropdownButton(
+                items: items.map((item) {
+                  return DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _dropdownValue = newValue!;
+                  });
+                  print(_dropdownValue.toUpperCase());
+                },
+                value: _dropdownValue,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: secondary),
+                underline: Container(
+                  height: 2,
+                  color: secondary,
+                ),
+              ),
             ],
           ),
         ),
@@ -308,7 +352,8 @@ class _AddCourseState extends State<AddCourse> {
                       'type': type,
                       'capacity': capacity.toString(),
                       'price': price.toString(),
-                      'description': description
+                      'description': description,
+                      'bacType': _dropdownValue.toUpperCase()
                     };
 
                     await Provider.of<DataProvider>(context, listen: false)
