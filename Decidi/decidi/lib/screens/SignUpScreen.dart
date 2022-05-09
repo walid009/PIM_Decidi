@@ -99,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 5),
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 5),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -126,7 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -694,66 +694,66 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              IconButton(
-                                color: Color(0xFFDBE2E7),
-                                icon: FaIcon(
-                                  FontAwesomeIcons.google,
-                                  color: Color(0xFF57636C),
-                                  size: 20,
-                                ),
-                                onPressed: () async {
-                                  signInWithGoogle();
-                                  print(
-                                      "///////////////////////////////////////////////");
-                                  print(googleuserr!.email);
+                              // IconButton(
+                              //   color: Color(0xFFDBE2E7),
+                              //   icon: FaIcon(
+                              //     FontAwesomeIcons.google,
+                              //     color: Color(0xFF57636C),
+                              //     size: 20,
+                              //   ),
+                              //   onPressed: () async {
+                              //     signInWithGoogle();
+                              //     print(
+                              //         "///////////////////////////////////////////////");
+                              //     print(googleuserr!.email);
 
-                                  Map<String, dynamic> userData = {
-                                    "firstName": googleuserr!.displayName,
-                                    "email": googleuserr!.email,
-                                    "password": "password",
-                                    // "role": "client"
-                                  };
-                                  print(userData);
-                                  Map<String, String> headers = {
-                                    "Content-Type":
-                                        "application/json; charset=UTF-8"
-                                  };
-                                  http
-                                      .post(Uri.http(baseUrl, "/createuser"),
-                                          headers: headers,
-                                          body: json.encode(userData))
-                                      .then((http.Response response) async {
-                                    if (response.statusCode == 200) {
-                                      Map<String, dynamic> userData =
-                                          json.decode(response.body);
+                              //     Map<String, dynamic> userData = {
+                              //       "firstName": googleuserr!.displayName,
+                              //       "email": googleuserr!.email,
+                              //       "password": "password",
+                              //       // "role": "client"
+                              //     };
+                              //     print(userData);
+                              //     Map<String, String> headers = {
+                              //       "Content-Type":
+                              //           "application/json; charset=UTF-8"
+                              //     };
+                              //     http
+                              //         .post(Uri.http(baseUrl, "/createuser"),
+                              //             headers: headers,
+                              //             body: json.encode(userData))
+                              //         .then((http.Response response) async {
+                              //       if (response.statusCode == 200) {
+                              //         Map<String, dynamic> userData =
+                              //             json.decode(response.body);
 
-                                      // SharedPreferences
-                                      SharedPreferences prefs =
-                                          await SharedPreferences.getInstance();
-                                      prefs.setString(
-                                          "userId", userData["_id"]);
+                              //         // SharedPreferences
+                              //         SharedPreferences prefs =
+                              //             await SharedPreferences.getInstance();
+                              //         prefs.setString(
+                              //             "userId", userData["_id"]);
 
-                                      Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute<void>(
-                                          builder: (BuildContext context) =>
-                                              RootApp(),
-                                        ),
-                                      );
-                                    }
-                                  });
-                                },
-                              ),
-                              IconButton(
-                                color: Color(0xFFDBE2E7),
-                                icon: FaIcon(
-                                  FontAwesomeIcons.apple,
-                                  color: Color(0xFF57636C),
-                                  size: 20,
-                                ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
-                              ),
+                              //         Navigator.of(context).pushReplacement(
+                              //           MaterialPageRoute<void>(
+                              //             builder: (BuildContext context) =>
+                              //                 RootApp(),
+                              //           ),
+                              //         );
+                              //       }
+                              //     });
+                              //   },
+                              // ),
+                              // // IconButton(
+                              //   color: Color(0xFFDBE2E7),
+                              //   icon: FaIcon(
+                              //     FontAwesomeIcons.apple,
+                              //     color: Color(0xFF57636C),
+                              //     size: 20,
+                              //   ),
+                              //   onPressed: () {
+                              //     print('IconButton pressed ...');
+                              //   },
+                              // ),
                               IconButton(
                                 color: Color(0xFFDBE2E7),
                                 icon: FaIcon(
