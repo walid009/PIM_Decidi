@@ -16,9 +16,15 @@ class AddProposition extends StatefulWidget {
 }
 
 class _AddPropositionState extends State<AddProposition> {
-  late String academicBackground;
-  late String universityName;
-  late String description;
+  late String bac;
+  late String code;
+  late String filiere;
+  late String universite;
+  late String etablissement;
+  late String gouvernorat;
+  late String critaire;
+  late String duree;
+  late String score;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   String imagePath = "asd";
   late File myImagePath;
@@ -60,7 +66,7 @@ class _AddPropositionState extends State<AddProposition> {
               SizedBox(
                 height: 10,
               ),
-              InkWell(
+              /* InkWell(
                 onTap: () {
                   getImageFromGallery();
                 },
@@ -92,7 +98,7 @@ class _AddPropositionState extends State<AddProposition> {
               ),
               SizedBox(
                 height: 20,
-              ),
+              ),*/
               TextFormField(
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
@@ -104,17 +110,17 @@ class _AddPropositionState extends State<AddProposition> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelText: "Academic background :",
+                  labelText: "Bac :",
                   labelStyle: TextStyle(
                     color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
-                  academicBackground = value!;
+                  bac = value!;
                 },
                 validator: (value) {
-                  if (value!.isEmpty || value.length < 10) {
-                    return "title required minimum 10 caractere";
+                  if (value!.isEmpty || value.length < 3) {
+                    return "title required minimum 3 caractere";
                   } else {
                     return null;
                   }
@@ -134,17 +140,17 @@ class _AddPropositionState extends State<AddProposition> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelText: "University Name :",
+                  labelText: "Code :",
                   labelStyle: TextStyle(
                     color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
-                  universityName = value!;
+                  code = value!;
                 },
                 validator: (value) {
-                  if (value!.isEmpty || value.length < 10) {
-                    return "university Name required minimum 10 caractere";
+                  if (value!.isEmpty || value.length < 3) {
+                    return "title required minimum 3 caractere";
                   } else {
                     return null;
                   }
@@ -154,7 +160,6 @@ class _AddPropositionState extends State<AddProposition> {
                 height: 10,
               ),
               TextFormField(
-                maxLines: 8,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   fillColor: Colors.black,
@@ -165,17 +170,200 @@ class _AddPropositionState extends State<AddProposition> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelText: "Description :",
+                  labelText: "Filiere:",
                   labelStyle: TextStyle(
                     color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
-                  description = value!;
+                  filiere = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "title required minimum 2 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "universite :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  universite = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "university Name required minimum 2 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Etablissement :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  etablissement = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "university Name required minimum 2 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                maxLines: 1,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Gouvernorat :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  gouvernorat = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 3) {
+                    return "title required minimum 3 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                maxLines: 4,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Criteres :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  critaire = value!;
                 },
                 validator: (value) {
                   if (value!.isEmpty || value.length < 10) {
                     return "title required minimum 10 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                maxLines: 1,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Duree :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  duree = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "title required minimum 2 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Score :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  score = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 1) {
+                    return "title required minimum 1 caractere";
                   } else {
                     return null;
                   }
@@ -224,9 +412,15 @@ class _AddPropositionState extends State<AddProposition> {
                     _formkey.currentState!.save();
 
                     Map<String, dynamic> propositionBody = {
-                      'academicBackground': academicBackground,
-                      'universityName': universityName,
-                      'description': description,
+                      'Bac': bac,
+                      'Code': code,
+                      'Filiere': filiere,
+                      'Universite': universite,
+                      'Etablissement': etablissement,
+                      'Gouvernorat': gouvernorat,
+                      'Criteres': critaire,
+                      'Duree': duree,
+                      'Score': score
                     };
                     print("//////////////////////////");
                     print("proposition Body");

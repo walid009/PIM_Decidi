@@ -4,15 +4,29 @@ import 'package:decidi/theme/color.dart';
 
 // ignore: must_be_immutable
 class PropositionItem extends StatelessWidget {
-  PropositionItem(this.propositionId, this.academicBackground,
-      this.universityName, this.description,
-      {Key? key})
-      : super(key: key);
+  PropositionItem(
+    this.propositionId,
+    this.bac,
+    this.code,
+    this.filiere,
+    this.universite,
+    this.etablissement,
+    this.gouvernorat,
+    this.critaire,
+    this.duree,
+    this.score,
+  );
 
   late String propositionId;
-  late String academicBackground;
-  late String universityName;
-  late String description;
+  late String bac;
+  late String code;
+  late String filiere;
+  late String universite;
+  late String etablissement;
+  late String gouvernorat;
+  late String critaire;
+  late String duree;
+  late String score;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +41,17 @@ class PropositionItem extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   builder: (BuildContext context) => UpdateProposition(
-                      propositionId: propositionId,
-                      academicBackground: academicBackground,
-                      universityName: universityName,
-                      description: description),
+                    propositionId: propositionId,
+                    bac: bac,
+                    code: code,
+                    filiere: filiere,
+                    universite: universite,
+                    etablissement: etablissement,
+                    gouvernorat: gouvernorat,
+                    critaire: critaire,
+                    duree: duree,
+                    score: score,
+                  ),
                 ),
               );
             },
@@ -69,7 +90,7 @@ class PropositionItem extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.60,
                           child: Text(
-                            academicBackground,
+                            filiere,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -84,7 +105,7 @@ class PropositionItem extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           child: Text(
-                            universityName,
+                            universite,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(fontSize: 14, color: textColor),
@@ -96,7 +117,7 @@ class PropositionItem extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           child: Text(
-                            description,
+                            code,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(fontSize: 14, color: labelColor),
