@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-import 'package:cool_alert/cool_alert.dart';
 import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/SignInScreen.dart';
 import 'package:decidi/theme/color.dart';
 import 'package:decidi/utils/first_run_data.dart';
 import 'first_run.dart';
-import 'package:decidi/screens/root_app.dart';
+
 import 'package:decidi/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -53,18 +52,17 @@ class _DisplayMyTextSportState extends State<DisplayMyTextSport> {
       info.text = widget.bacGradesData[9].x;
       moy.text = widget.bacGradesData[10].x;
     } else {
-      openAlert("Error", "Bac Type is worng or Image not clear!");
+      WidgetsBinding.instance?.addPostFrameCallback((_) async {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Error"),
+                content: Text("Bac Type is worng or Image not clear!"),
+              );
+            });
+      });
     }
-  }
-
-  // Advanced using of alerts
-  Future<void> openAlert(String title, String desc) async {
-    await CoolAlert.show(
-        context: context,
-        type: CoolAlertType.warning,
-        title: title,
-        text: desc,
-        backgroundColor: Theme.of(context).primaryColor);
   }
 
   @override

@@ -72,10 +72,10 @@ class PostItem extends StatelessWidget {
                         SizedBox(
                           height: 5,
                         ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text("likes: " + likes),
-                        )
+                        // Align(
+                        //   alignment: Alignment.centerRight,
+                        //   child: Text("likes: " + likes),
+                        // )
                       ],
                     )
                   ],
