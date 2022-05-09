@@ -39,7 +39,11 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: appBgColor, title: getHeader()),
+      appBar: AppBar(
+          backgroundColor: appBgColor,
+          foregroundColor: Colors.black,
+          elevation: 0,
+          title: getHeader()),
       body: Form(
         key: _keyForm,
         child: SafeArea(
@@ -107,176 +111,6 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 12),
-                  child: TextFormField(
-                    initialValue: _lastname,
-                    onSaved: (text) {
-                      _lastname = text;
-                    },
-                    // ignore: body_might_complete_normally_nullable
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "Please Put your Last Name";
-                      }
-                    },
-
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Your Last Name...',
-                      labelStyle: const TextStyle(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF57636C),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      hintText: 'Enter your Last Name...',
-                      hintStyle: const TextStyle(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF57636C),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xFFDBE2E7),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xFFDBE2E7),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding:
-                          const EdgeInsetsDirectional.fromSTEB(24, 24, 20, 24),
-                    ),
-                    style: const TextStyle(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0xFF1D2429),
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 12),
-                  child: TextFormField(
-                    onSaved: (text) {
-                      _password = text;
-                    },
-                    // ignore: body_might_complete_normally_nullable
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "Please Put your Old password";
-                      }
-                    },
-
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Old password',
-                      labelStyle: const TextStyle(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF57636C),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      hintText: 'Enter your Old password...',
-                      hintStyle: const TextStyle(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF57636C),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xFFDBE2E7),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xFFDBE2E7),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding:
-                          const EdgeInsetsDirectional.fromSTEB(24, 24, 20, 24),
-                    ),
-                    style: const TextStyle(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0xFF1D2429),
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 12),
-                  child: TextFormField(
-                    onSaved: (text) {
-                      Npassword = text;
-                    },
-
-                    // ignore: body_might_complete_normally_nullable
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "Please Put your New Password";
-                      }
-                    },
-
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'New Password',
-                      labelStyle: const TextStyle(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF57636C),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      hintText: 'Enter your New Password...',
-                      hintStyle: const TextStyle(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF57636C),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xFFDBE2E7),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xFFDBE2E7),
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding:
-                          const EdgeInsetsDirectional.fromSTEB(24, 24, 20, 24),
-                    ),
-                    style: const TextStyle(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0xFF1D2429),
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-                Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -290,11 +124,8 @@ class _SettingPageState extends State<SettingPage> {
                             Map<String, dynamic> userData = {
                               "firstName": _firstname,
                               "email": user["email"],
-                              "password": Npassword,
-                              "lastName": _lastname
                             };
-                            print(userData);
-                            print(user["_id"]);
+
                             Map<String, String> headers = {
                               "Content-Type": "application/json; charset=UTF-8"
                             };

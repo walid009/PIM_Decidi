@@ -27,9 +27,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late bool confirmPasswordVisibility;
   late TextEditingController emailAddressController;
   late TextEditingController passwordController;
+  late TextEditingController nameController = TextEditingController();
   late bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
+  late String? _name;
   late String? _email;
   late String? _password;
   late String? _passwordconfirmation;
@@ -92,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height + 10,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -192,6 +194,62 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 12),
+                          child: TextFormField(
+                            controller: nameController,
+                            onSaved: (text) {
+                              _name = text;
+                            },
+                            validator: (String? value) {
+                              if (value!.isEmpty) {
+                                return "Please Put your Full name";
+                              }
+                            },
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Your full name...',
+                              labelStyle: TextStyle(
+                                fontFamily: 'Lexend Deca',
+                                color: Color(0xFF57636C),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              hintText: 'Enter your full name...',
+                              hintStyle: TextStyle(
+                                fontFamily: 'Lexend Deca',
+                                color: Color(0xFF57636C),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFDBE2E7),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFFDBE2E7),
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                  24, 24, 20, 24),
+                            ),
+                            style: TextStyle(
+                              fontFamily: 'Lexend Deca',
+                              color: Color(0xFF1D2429),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ),
+
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 12),
                           child: TextFormField(
@@ -523,7 +581,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               _keyForm.currentState!.save();
 
                               Map<String, dynamic> userData = {
-                                "firstName": "Achref",
+                                "firstName": _name,
                                 "email": _email,
                                 "password": _password,
                                 "role": "client"

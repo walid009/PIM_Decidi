@@ -5,6 +5,7 @@ import 'package:decidi/providers/DataProvider.dart';
 import 'package:decidi/screens/SignUpScreen.dart';
 import 'package:decidi/screens/admin/dashboard_admin.dart';
 import 'package:decidi/screens/course/organisateur/NavigationBottom.dart';
+import 'package:decidi/screens/forgetpage.dart';
 import 'package:decidi/screens/root_app.dart';
 import 'package:decidi/utils/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -343,7 +344,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                                   AppUser.User user = AppUser.User(
                                       userData["id"],
-                                      "firstName",
+                                      userData["firstName"],
                                       "lastName",
                                       userData["email"],
                                       userData["role"],
@@ -433,6 +434,22 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    ForgetScreen(),
+                              ),
+                            );
+                          },
+                          child: Text("Forget password? click here")),
                     ),
                   ),
                   Expanded(

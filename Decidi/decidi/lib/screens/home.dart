@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                profile["name"]!,
+                user.firstName,
                 style: TextStyle(
                   color: labelColor,
                   fontSize: 14,
