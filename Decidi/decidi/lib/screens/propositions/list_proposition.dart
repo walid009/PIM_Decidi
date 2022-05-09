@@ -45,6 +45,7 @@ class _ListPropositionState extends State<ListProposition> {
   @override
   Widget build(BuildContext context) {
     allpropositions = Provider.of<DataProvider>(context).listpropositions;
+    print(allpropositions.length);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(
@@ -139,9 +140,15 @@ class _ListPropositionState extends State<ListProposition> {
                     itemCount: searchpropositions.length,
                     itemBuilder: (ctxx, i) => PropositionItem(
                       searchpropositions[i].propositionId,
-                      searchpropositions[i].Etablissement,
-                      searchpropositions[i].Universite,
+                      searchpropositions[i].Bac,
+                      searchpropositions[i].Code.toString(),
                       searchpropositions[i].Filiere,
+                      searchpropositions[i].Universite,
+                      searchpropositions[i].Etablissement,
+                      searchpropositions[i].Gouvernorat,
+                      searchpropositions[i].Criteres,
+                      searchpropositions[i].Duree,
+                      searchpropositions[i].Score,
                     ),
                   ),
                 )
@@ -150,9 +157,15 @@ class _ListPropositionState extends State<ListProposition> {
                     itemCount: allpropositions.length,
                     itemBuilder: (ctxx, i) => PropositionItem(
                       allpropositions[i].propositionId,
-                      allpropositions[i].Etablissement,
-                      allpropositions[i].Universite,
+                      allpropositions[i].Bac,
+                      allpropositions[i].Code.toString(),
                       allpropositions[i].Filiere,
+                      allpropositions[i].Universite,
+                      allpropositions[i].Etablissement,
+                      allpropositions[i].Gouvernorat,
+                      allpropositions[i].Criteres,
+                      allpropositions[i].Duree,
+                      allpropositions[i].Score,
                     ),
                   ),
                 ),

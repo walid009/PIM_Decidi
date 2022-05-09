@@ -8,16 +8,29 @@ import 'package:provider/provider.dart';
 
 class UpdateProposition extends StatefulWidget {
   final String propositionId;
-  final String academicBackground;
-  final String universityName;
-  final String description;
 
-  const UpdateProposition(
+  late String bac;
+  late String code;
+  late String filiere;
+  late String universite;
+  late String etablissement;
+  late String gouvernorat;
+  late String critaire;
+  late String duree;
+  late String score;
+
+  UpdateProposition(
       {Key? key,
       required this.propositionId,
-      required this.academicBackground,
-      required this.universityName,
-      required this.description})
+      required this.bac,
+      required this.code,
+      required this.filiere,
+      required this.universite,
+      required this.etablissement,
+      required this.gouvernorat,
+      required this.critaire,
+      required this.duree,
+      required this.score})
       : super(key: key);
 
   @override
@@ -33,6 +46,16 @@ class _UpdatePropositionState extends State<UpdateProposition> {
   late String academicBackgroundF;
   late String universityNameF;
   late String descriptionF;
+
+  late String bacF;
+  late String codeF;
+  late String filiereF;
+  late String universiteF;
+  late String etablissementF;
+  late String gouvernoratF;
+  late String critaireF;
+  late String dureeF;
+  late String scoreF;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +116,7 @@ class _UpdatePropositionState extends State<UpdateProposition> {
               SizedBox(
                 height: 10,
               ),
-              InkWell(
+              /*InkWell(
                 onTap: () {
                   getImageFromGallery();
                 },
@@ -125,9 +148,10 @@ class _UpdatePropositionState extends State<UpdateProposition> {
               ),
               SizedBox(
                 height: 20,
-              ),
+              ),*/
+
               TextFormField(
-                initialValue: widget.academicBackground,
+                initialValue: widget.bac,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   fillColor: Colors.black,
@@ -138,13 +162,201 @@ class _UpdatePropositionState extends State<UpdateProposition> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelText: "Academic background :",
+                  labelText: "Bac :",
                   labelStyle: TextStyle(
                     color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
-                  academicBackgroundF = value!;
+                  bacF = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 3) {
+                    return "title required minimum 3 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                initialValue: widget.code,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Code :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  codeF = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 3) {
+                    return "title required minimum 3 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                initialValue: widget.filiere,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Filiere:",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  filiereF = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "title required minimum 2 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                initialValue: widget.universite,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "universite :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  universiteF = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "university Name required minimum 2 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                initialValue: widget.etablissement,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Etablissement :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  etablissementF = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 2) {
+                    return "university Name required minimum 2 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                initialValue: widget.gouvernorat,
+                maxLines: 1,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Gouvernorat :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  gouvernoratF = value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty || value.length < 3) {
+                    return "title required minimum 3 caractere";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                initialValue: widget.critaire,
+                maxLines: 4,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  fillColor: Colors.black,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  labelText: "Criteres :",
+                  labelStyle: TextStyle(
+                    color: labelColor,
+                  ),
+                ),
+                onSaved: (value) {
+                  critaireF = value!;
                 },
                 validator: (value) {
                   if (value!.isEmpty || value.length < 10) {
@@ -158,7 +370,8 @@ class _UpdatePropositionState extends State<UpdateProposition> {
                 height: 10,
               ),
               TextFormField(
-                initialValue: widget.universityName,
+                initialValue: widget.duree,
+                maxLines: 1,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   fillColor: Colors.black,
@@ -169,17 +382,17 @@ class _UpdatePropositionState extends State<UpdateProposition> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelText: "University Name :",
+                  labelText: "Duree :",
                   labelStyle: TextStyle(
                     color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
-                  universityNameF = value!;
+                  dureeF = value!;
                 },
                 validator: (value) {
-                  if (value!.isEmpty || value.length < 10) {
-                    return "university Name required minimum 10 caractere";
+                  if (value!.isEmpty || value.length < 2) {
+                    return "title required minimum 2 caractere";
                   } else {
                     return null;
                   }
@@ -189,8 +402,7 @@ class _UpdatePropositionState extends State<UpdateProposition> {
                 height: 10,
               ),
               TextFormField(
-                initialValue: widget.description,
-                maxLines: 8,
+                initialValue: widget.score,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   fillColor: Colors.black,
@@ -201,17 +413,17 @@ class _UpdatePropositionState extends State<UpdateProposition> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelText: "Description :",
+                  labelText: "Score :",
                   labelStyle: TextStyle(
                     color: labelColor,
                   ),
                 ),
                 onSaved: (value) {
-                  descriptionF = value!;
+                  scoreF = value!;
                 },
                 validator: (value) {
-                  if (value!.isEmpty || value.length < 10) {
-                    return "title required minimum 10 caractere";
+                  if (value!.isEmpty || value.length < 1) {
+                    return "title required minimum 1 caractere";
                   } else {
                     return null;
                   }
@@ -260,10 +472,15 @@ class _UpdatePropositionState extends State<UpdateProposition> {
                     _formkey.currentState!.save();
 
                     Map<String, dynamic> propositionBody = {
-                      '_id': widget.propositionId,
-                      'academicBackground': academicBackgroundF,
-                      'universityName': universityNameF,
-                      'description': descriptionF,
+                      'Bac': bacF,
+                      'Code': codeF,
+                      'Filiere': filiereF,
+                      'Universite': universiteF,
+                      'Etablissement': etablissementF,
+                      'Gouvernorat': gouvernoratF,
+                      'Criteres': critaireF,
+                      'Duree': dureeF,
+                      'Score': scoreF,
                     };
                     await Provider.of<DataProvider>(context, listen: false)
                         .updateProposition(propositionBody);
