@@ -357,8 +357,14 @@ class _AddCourseState extends State<AddCourse> {
                     };
 
                     await Provider.of<DataProvider>(context, listen: false)
-                        .addCourse(title, capacity.toString(), price.toString(),
-                            description, image!);
+                        .addCourse(
+                            title,
+                            type,
+                            capacity.toString(),
+                            price.toString(),
+                            description,
+                            image!,
+                            _dropdownValue.toUpperCase());
 
                     // await http
                     //     .post(Uri.http(baseUrl, "/createcourse"),
